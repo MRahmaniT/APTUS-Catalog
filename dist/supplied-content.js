@@ -160,12 +160,12 @@ export const applications = [
   },
   {
     "id": "production",
-    "title": "سوله بتنی تولیدی (صنایع سبک و مونتاژ)",
+    "title": "سوله بتنی تولیدی",
     "image": "./assets/applications/production.jpg"
   },
   {
     "id": "industry",
-    "title": "سوله بتنی صنعتی (صنایع سنگین)",
+    "title": "سوله بتنی صنعتی",
     "image": "./assets/applications/industry.jpg"
   },
   {
