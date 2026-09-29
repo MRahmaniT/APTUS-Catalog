@@ -62,7 +62,7 @@ function header(active = "cover") {
   const submenu = (id, label, entries) => `<details class="nav-group ${active === id ? "is-active" : ""}"><summary>${label}<span class="nav-chevron" aria-hidden="true"></span></summary><div class="nav-submenu">${entries.map(([href, name]) => `<a href="${href}">${name}</a>`).join("")}</div></details>`;
   return `<header class="site-header" id="top">
     <a class="brand" href="${pageLink("cover")}" aria-label="${ui.homeLabel}">
-      <img src="./assets/aptus-logo.jpg" alt="" width="43" height="43">
+      <img src="./assets/aptus-logo.jpg" alt="" style="border-radius: 0px; width="43" height="43">
       <span class="brand-copy"><strong>${companyName}</strong><small lang="en" dir="ltr">APTUS IRAN</small></span>
     </a>
     <nav class="primary-nav" id="primary-nav" aria-label="${ui.menu}">
@@ -89,7 +89,7 @@ function footer() {
   return `<footer class="site-footer">
     <div class="footer-hero"><div><span class="eyebrow">APTUS INDUSTRIAL PRECAST SYSTEM</span><h2>${ui.footer.tagline}</h2></div><strong lang="en" dir="ltr">APTUS<span>.</span></strong></div>
     <div class="footer-grid">
-      <div class="footer-about"><div class="footer-brand"><img src="./assets/aptus-logo.jpg" alt="" width="50" height="50"><span>${companyName}<small lang="en" dir="ltr">APTUS IRAN</small></span></div><p>${ui.footer.summary}</p></div>
+      <div class="footer-about"><div class="footer-brand"><img src="./assets/aptus-logo.jpg" alt="" style="border-radius: 0px; width="50" height="50"><span>${companyName}<small lang="en" dir="ltr">APTUS IRAN</small></span></div><p>${ui.footer.summary}</p></div>
       <div class="footer-column"><h3>${ui.footer.explore}</h3><a href="${pageLink("about")}">${ui.about.title}</a><a href="${pageLink("system")}">${ui.system.title}</a><a href="${pageLink("types")}">${ui.types.title}</a><a href="${pageLink("facades")}">${extra.nav.facades}</a><a href="${pageLink("applications")}">${extra.nav.applications}</a></div>
       <div class="footer-column"><h3>${ui.footer.components}</h3>${footerParts.map(part => `<a href="${partLink(part.id)}">${part.name}</a>`).join("")}<a href="${pageLink("explore")}">${ui.explore.title}</a><a href="${detailLink("benefits")}">${extra.benefits.all}</a></div>
       <div class="footer-column"><h3>${ui.footer.contact}</h3><span>${company.address || country}</span><span>${company.phone ? `<a dir="ltr" href="tel:${contactPhone}">${company.phone}</a>` : ui.footer.missing}</span><a href="${detailLink("documents")}">${extra.documents.title}</a></div>
@@ -108,12 +108,12 @@ function catalog() {
   return `${header()}<main>
     <section id="cover" class="cover-section" aria-labelledby="cover-title">
       <div class="cover-copy">
-        <div class="cover-kicker"><span class="orange-line"></span><span>${ui.cover.kicker}</span></div>
-        <div class="cover-title-wrap"><p class="cover-mini" lang="en" dir="ltr">AIPS / APTUS INDUSTRIAL PRECAST SYSTEM</p><h1 id="cover-title">${ui.cover.title}</h1><p class="cover-sub">${ui.cover.sub}</p></div>
-        <div class="cover-company"><img src="./assets/aptus-logo.jpg" alt="" width="54" height="54"><span><strong>${ui.about.legal}<br>${companyName}</strong><small lang="en" dir="ltr">APTUS IRAN</small></span></div>
-        <a class="cover-scroll" href="${pageLink("about")}">${ui.cover.enter}<span aria-hidden="true">↓</span></a>
+        <!-- <div class="cover-kicker"><span class="orange-line"></span><span>${ui.cover.kicker}</span></div> -->
+        <div class="cover-title-wrap"><h1 id="cover-title">${ui.cover.title}</h1></div>
+        <div class="cover-company"><img src="./assets/aptus-logo.jpg" alt="" style="border-radius: 0px;" width="54" height="54"><span><strong>${ui.about.legal}<br>${companyName}</strong></span></div>
+        <!-- <a class="cover-scroll" href="${pageLink("about")}">${ui.cover.enter}<span aria-hidden="true">↓</span></a> -->
       </div>
-      <div class="cover-visual"><div class="visual-stage"><img src="./assets/cover-render.jpg" alt="${ui.cover.visualAlt}"></div></div>
+      <div class="cover-visual"><div class="visual-stage"><img src="./assets/cover-render1.jpg" alt="${ui.cover.visualAlt}"></div></div>
     </section>
 
     <section id="about" class="page-section about-section"><div class="section-inner">

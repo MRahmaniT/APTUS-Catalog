@@ -1,73 +1,204 @@
-// Interface copy is grouped by locale so every page can be switched without a backend.
-export const copy = {
+// Translations of the supplied APTUS editorial documents and new catalog UI.
+export const editorialUI = {
   fa: {
-    nav: ["درباره آپتوس", "معرفی سامانه", "تیپ‌ها و ابعاد", "اجزا", "نمای تعاملی", "مزایا", "ارتباط"],
-    menu: "فهرست", openMenu: "باز کردن فهرست", closeMenu: "بستن فهرست", language: "انتخاب زبان", headerCta: "مشاهده تیپ‌ها", homeLabel: "آپتوس ایران، ابتدای کاتالوگ",
-    cover: { kicker: "کاتالوگ دیجیتال سامانه صنعتی", title: "سیستم سوله بتنی<br><em>پیش‌ساخته</em><br>سریع‌الاحداث آپتوس", sub: "سیستمی برای تولید، حمل و نصب قطعات سازه‌ای با مدول‌بندی مشخص", enter: "ورود به کاتالوگ", visual: "نمای شماتیک سازه", visualAlt: "رندر قاب‌بندی سوله بتنی پیش‌ساخته آپتوس", single: "سامانه سوله تک‌دهانه", module: "مدول پایه" },
-    about: { title: "درباره آپتوس", aside: "نگاهی کوتاه به رویکرد شرکت در ساخت صنعتی سازه‌های بتنی", quote: "از طراحی قطعه تا نصب سازه، یک روند هماهنگ.", extra: "تمرکز این کاتالوگ بر سوله بتنی پیش‌ساخته سریع‌الاحداث آپتوس است؛ سامانه‌ای که برای کاهش وابستگی به عملیات تر کارگاهی و هماهنگی بیشتر اجزای سازه توسعه یافته است.", link: "آشنایی با سامانه", legal: "شرکت ساختمانی، تولیدی و پژوهشی", location: "ایران" },
-    system: { title: "معرفی سامانه", aside: "سوله بتنی پیش‌ساخته مدولار سریع‌الاحداث آپتوس", imageAlt: "نمای سه‌بعدی فنی از اسکلت و اجزای سازه سوله", caption: "نمای فنی اسکلت سوله / آرشیو تصویری ارائه‌شده", lead: "سازه‌ای مدولار برای فضاهای صنعتی، با قطعاتی که پیش از ورود به کارگاه تولید می‌شوند.", p1: "این سیستم در سه تیپ ارتفاعی و شش تیپ دهانه‌ای تعریف شده است. در صورت سفارش و بررسی پروژه، امکان تغییر دهانه و ارتفاع برای متراژهای بالای ۵۰٬۰۰۰ مترمربع در کاتالوگ معرفی شده است.", p2: "پوشش سقف و دیوار می‌تواند بنا به سفارش با ساندویچ‌پنل یا پانل‌های مسلح AAC اجرا شود. تیپ‌ها با امکان پیش‌بینی جرثقیل سقفی تا ۱۰ تن نیز معرفی شده‌اند.", stats: ["تیپ ارتفاعی", "تیپ دهانه", "متر / مدول پایه"] },
-    types: { title: "تیپ‌ها و ابعاد", aside: "برای دیدن ابعاد و توضیح هر ترکیب، خانه مربوط را انتخاب کنید.", intro: "سه ارتفاع 3H / 4H / 5H در کنار شش دهانه 5M–10M، مجموعاً ۱۸ ترکیب استاندارد را شکل می‌دهند. در این نام‌گذاری H = M = 2.4 m است.", scroll: "جدول در نمایشگر کوچک قابل پیمایش افقی است.", region: "جدول ۱۸ تیپ دهانه و ارتفاع، قابل پیمایش افقی", underRoof: "ارتفاع تا زیر سقف", clearSpan: "دهانه خالص", meter: "متر", view: "مشاهده جزئیات", cell: "تیپ {type}، دهانه {span} متر، ارتفاع {height} متر", notes: ["فاصله پشت تا پشت ستون‌ها، ۱٫۲ متر بیش از دهانه خالص هر تیپ است.", "تیپ‌های 11M و 12M در جدول فایل مبنا «در دست مطالعه» آمده‌اند و در ترکیب‌های استاندارد اینجا قرار نگرفته‌اند.", "انتخاب پوشش و جرثقیل سقفی بر اساس سفارش و طراحی نهایی پروژه انجام می‌شود."] },
-    parts: { title: "اجزای سامانه", aside: "نه قطعه پیش‌ساخته در آرشیو ارائه‌شده؛ خلاصه هر قطعه و متن کامل در صفحه جزئیات آن.", imageAlt: "تصویر سه‌بعدی {name}" },
-    explore: { title: "نمای تعاملی اجزا", aside: "روی شماره‌های سازه بزنید تا پیش‌نمایش قطعه و مسیر جزئیات آن را ببینید.", diagramTitle: "نمای سه‌بعدی سازه و دیوارهای پیرامونی", diagramAlt: "شماتیک شماره‌گذاری‌شده هشت جزء سازه پیش‌ساخته آپتوس", diagramHelp: "نقاط روی تصویر برای نمایش قطعات قابل انتخاب هستند.", selectGroup: "فهرست اجزای قابل انتخاب", select: "نمایش {name}", imageAlt: "پیش‌نمایش {name}", more: "اطلاعات بیشتر" },
-    benefits: { title: "مزایای سامانه", headline: "مزیت‌های اجرایی و عملکردی", source: "برگرفته از کاتالوگ فنی آپتوس" },
-    contact: { title: "ارتباط و مدارک", aside: "موقعیت شرکت، راه‌های تماس و نسخه‌های ارائه‌شده از مدارک", intro: "برای دریافت جزئیات اجرایی و بررسی تیپ متناسب با پروژه، از راه‌های ارتباطی رسمی شرکت استفاده کنید.", location: "موقعیت", addressMissing: "نشانی دقیق هنوز ارائه نشده است.", phone: "تماس", phoneMissing: "در انتظار شماره رسمی", documents: "گواهی‌نامه‌ها و مدارک", documentsMissing: "مدرک تأییدشده‌ای در فایل‌های ارائه‌شده نبود.", documentsNext: "پس از دریافت تصاویر یا فایل گواهی‌نامه‌ها، این بخش تکمیل می‌شود." },
-    detail: { catalog: "کاتالوگ", typeTitle: "تیپ {type}", typeDescription: "سوله بتنی پیش‌ساخته تک‌دهانه آپتوس با ارتفاع {height} متر تا زیر سقف و دهانه خالص {span} متر.", backTypes: "بازگشت به جدول تیپ‌ها", frame: "نمای شماتیک قاب عرضی", frameAlt: "نمای شماتیک قاب تیپ {type}", drawingNote: "نمای شماتیک است؛ نقشه‌های اجرایی و جزئیات اتصال تابع طراحی نهایی پروژه‌اند.", dimensions: "ابعاد این تیپ", outside: "فاصله پشت تا پشت ستون", module: "مدول پایه", notes: "درباره این ترکیب", p1: "این تیپ یکی از ترکیب‌های استاندارد جدول سوله تک‌دهانه است. دهانه {spanCode} و ارتفاع {heightCode} بر اساس مدول ۲٫۴ متری تعریف شده‌اند.", p2: "مطابق کاتالوگ مبنا، پوشش سقف و دیوار بنا به سفارش می‌تواند ساندویچ‌پنل یا پانل مسلح AAC باشد. امکان پیش‌بینی جرثقیل سقفی تا ۱۰ تن نیز به طراحی پروژه و سفارش وابسته است.", otherTypes: "تیپ‌های دیگر", previous: "تیپ قبلی", next: "تیپ بعدی", backExplore: "بازگشت به نمای تعاملی", partOf: "جزء {number} از ۸", partRole: "نقش این قطعه در سازه", technical: "یادداشت فنی", technicalNote: "ابعاد، شکل نهایی و جزئیات اتصال قطعه مطابق نقشه‌های مصوب هر پروژه مشخص می‌شوند.", placement: "جایگاه این قطعه را در مجموعه سازه ببینید." },
-    footer: { tagline: "ما کیفیت می‌سازیم", summary: "سامانه سوله بتنی پیش‌ساخته مدولار برای ساخت صنعتی دقیق و هماهنگ.", explore: "کاوش در کاتالوگ", components: "اجزای پیش‌ساخته", contact: "ارتباط با ما", back: "بازگشت به آغاز", rights: "تمامی حقوق محفوظ است.", missing: "اطلاعات تماس رسمی در انتظار تکمیل است." }
+    nav: { home: "آغاز", types: "تیپ‌بندی", standard: "سوله تک‌دهانه", facades: "نماسازی", parts: "اجزای بتنی", overview: "همه اجزا", interactive: "نمای تعاملی", applications: "کاربری‌ها", benefits: "مزایا", contact: "درباره ما", contactInfo: "ارتباط با ما", documents: "گواهینامه‌ها" },
+    more: "اطلاعات بیشتر", fullText: "متن کامل و تصاویر قطعه", sourcePdf: "فایل فنی اصلی", gallery: "نماهای بیشتر", galleryAlt: "نمای شماره {number} از {name}",
+    facades: { title: "ایده‌های نماسازی", aside: "طرح‌های ارائه‌شده برای جداره بتنی و پوشش ساندویچ‌پنل", caption: "نمونه طرح", all: "مشاهده همه طرح‌ها", note: "تصاویر طرح‌های نماسازی ارائه‌شده در فایل آپتوس هستند." },
+    applications: { title: "کاربری‌های پیشنهادی", aside: "پنج نمونه کاربری معرفی‌شده در فایل‌های ارائه‌شده", note: "تصاویر، نمونه‌های تصویری کاربری هستند و الزاماً پروژه اجراشده آپتوس را نشان نمی‌دهند." },
+    benefits: { all: "همه مزایا", detail: "فهرست کامل مزایای سامانه", count: "۲۵ موضوع در سه گروه", preview: "مشاهده جزئیات مزایا" },
+    documents: { all: "همه مدارک", title: "مدارک و گواهی‌نامه‌ها", intro: "نسخه‌های ارائه‌شده از مدارک و گواهی‌نامه‌های آپتوس. تاریخ و اعتبار هر سند را در فایل اصلی بررسی کنید.", view: "مشاهده فایل", preview: "مدارک ارائه‌شده" },
+    part: { preview: "خلاصه قطعه", details: "شرح فنی قطعه", source: "نسخه اصلی سند فنی", additional: "تصاویر تکمیلی", total: "جزء {number} از ۹", corner: "قطعه تکمیلی جداره؛ جایگاه آن در شماتیک هشت‌نقطه‌ای مشخص نشده است." }
   },
   en: {
-    nav: ["About APTUS", "The system", "Types & dimensions", "Components", "Interactive view", "Advantages", "Contact"],
-    menu: "Menu", openMenu: "Open menu", closeMenu: "Close menu", language: "Choose language", headerCta: "Explore types", homeLabel: "APTUS Iran, catalog home",
-    cover: { kicker: "Digital industrial systems catalog", title: "Modular<br><em>precast concrete</em><br>industrial sheds", sub: "A coordinated system for producing, transporting and assembling structural components.", enter: "Explore the catalog", visual: "Structural concept render", visualAlt: "Render of the APTUS precast industrial shed frame", single: "Single-span shed system", module: "Base module" },
-    about: { title: "About APTUS", aside: "An overview of our approach to industrial precast construction", quote: "One coordinated process, from component design to assembly.", abstract: "APTUS Iran focuses on industrial production of precast concrete components and the development of a modular system for industrial sheds. Design, factory production, transport and on-site assembly are coordinated as one process to support controlled quality and reduce site work.", extra: "This catalog presents the APTUS modular precast concrete shed system, developed to coordinate structural elements and reduce wet construction work on site.", link: "Discover the system", legal: "Construction, manufacturing and research company", location: "Iran" },
-    system: { title: "The system", aside: "APTUS modular precast concrete industrial shed", imageAlt: "Technical 3D view of the shed frame and structural components", caption: "Technical frame view / supplied visual archive", lead: "A modular structure for industrial spaces, built from components produced before they reach the site.", p1: "The catalog defines three height types and six span types. For orders above 50,000 m², changes to the span and height may be considered according to project requirements.", p2: "Roof and wall finishes can be ordered as sandwich panels or reinforced AAC panels. The types can also be designed with or without provision for an overhead crane of up to 10 tonnes.", stats: ["height types", "span types", "m / base module"] },
-    types: { title: "Types & dimensions", aside: "Select a combination to view its dimensions and description.", intro: "Three heights (3H / 4H / 5H) and six spans (5M–10M) form 18 standard combinations. In this system, H = M = 2.4 m.", scroll: "Scroll sideways to view the full table →", region: "Scrollable table of 18 height and span combinations", underRoof: "Height below roof", clearSpan: "Clear span", meter: "m", view: "View details", cell: "Type {type}, {span} m span and {height} m height", notes: ["The outside-to-outside column width is 1.2 m greater than the clear span.", "The source table marks 11M and 12M as under study; they are not listed as standard combinations here.", "Roof and wall finishes and crane provision depend on the order and final project design."] },
-    parts: { title: "System components", aside: "Nine precast elements in the supplied archive, with previews and full technical descriptions.", imageAlt: "3D illustration of {name}" },
-    explore: { title: "Interactive assembly", aside: "Select a numbered point to preview the component and open its details.", diagramTitle: "3D frame and perimeter walls", diagramAlt: "Numbered assembly diagram of eight APTUS precast components", diagramHelp: "Select a point on the image to inspect a component.", selectGroup: "Selectable components", select: "Show {name}", imageAlt: "Preview of {name}", more: "More information" },
-    benefits: { title: "Advantages", headline: "Construction and performance benefits", source: "From the APTUS technical catalog" },
-    contact: { title: "Contact & documents", aside: "Company location, contact channels and supplied documents", intro: "Use the company's official contact details to discuss technical information and a suitable type for your project.", location: "Location", addressMissing: "The full address has not been supplied yet.", phone: "Call", phoneMissing: "Official number pending", documents: "Certificates & documents", documentsMissing: "No verified certificate was included in the supplied files.", documentsNext: "This section will be completed when official documents are provided." },
-    detail: { catalog: "Catalog", typeTitle: "Type {type}", typeDescription: "APTUS single-span precast concrete shed with {height} m under-roof height and {span} m clear span.", backTypes: "Back to type table", frame: "Schematic transverse frame", frameAlt: "Schematic frame for type {type}", drawingNote: "Schematic view. Construction drawings and connections are determined by final project design.", dimensions: "Type dimensions", outside: "Outside-to-outside columns", module: "Base module", notes: "About this combination", p1: "This is one standard combination from the single-span shed table. The {spanCode} span and {heightCode} height follow the 2.4 m module.", p2: "As described in the source catalog, roof and wall finishes may be sandwich panels or reinforced AAC panels by order. Crane provision up to 10 tonnes depends on project design and order.", otherTypes: "Other types", previous: "Previous type", next: "Next type", backExplore: "Back to interactive view", partOf: "Component {number} of 8", partRole: "Role in the structure", technical: "Technical note", technicalNote: "Final dimensions, geometry and connection details follow the approved drawings for each project.", placement: "See where this component sits in the complete assembly." },
-    footer: { tagline: "Building the future, piece by piece.", summary: "A modular precast concrete shed system for coordinated industrial construction.", explore: "Explore the catalog", components: "Precast components", contact: "Get in touch", back: "Back to top", rights: "All rights reserved.", missing: "Official contact details are pending." }
+    nav: { home: "Home", types: "Systems", standard: "Single-span types", facades: "Facade studies", parts: "Components", overview: "All components", interactive: "Interactive view", applications: "Applications", benefits: "Advantages", contact: "About us", contactInfo: "Contact", documents: "Certificates" },
+    more: "Learn more", fullText: "Full description and images", sourcePdf: "Original technical PDF", gallery: "More views", galleryAlt: "View {number} of {name}",
+    facades: { title: "Facade concepts", aside: "Supplied concepts for concrete perimeter walls and sandwich-panel cladding", caption: "Concept", all: "See every concept", note: "Facade concepts supplied in the APTUS archive." },
+    applications: { title: "Possible applications", aside: "Five application categories in the supplied materials", note: "Images illustrate potential uses and do not necessarily show completed APTUS projects." },
+    benefits: { all: "All advantages", detail: "Complete list of system advantages", count: "25 topics in three groups", preview: "Explore all advantages" },
+    documents: { all: "All documents", title: "Certificates and documents", intro: "Documents supplied for APTUS. Please check each original file for its date and current status.", view: "Open file", preview: "Supplied documents" },
+    part: { preview: "Component preview", details: "Technical description", source: "Original technical document", additional: "Additional images", total: "Component {number} of 9", corner: "Additional perimeter component; it has no numbered point on the eight-point assembly diagram." }
   },
   tr: {
-    nav: ["APTUS hakkında", "Sistem", "Tipler ve ölçüler", "Bileşenler", "Etkileşimli görünüm", "Avantajlar", "İletişim"],
-    menu: "Menü", openMenu: "Menüyü aç", closeMenu: "Menüyü kapat", language: "Dil seçimi", headerCta: "Tipleri incele", homeLabel: "APTUS İran, katalog ana sayfası",
-    cover: { kicker: "Dijital endüstriyel sistem kataloğu", title: "Modüler<br><em>prefabrik beton</em><br>endüstriyel yapılar", sub: "Yapısal elemanların üretimi, taşınması ve montajı için koordineli bir sistem.", enter: "Kataloğu incele", visual: "Yapısal konsept görseli", visualAlt: "APTUS prefabrik endüstriyel yapı iskeletinin görseli", single: "Tek açıklıklı yapı sistemi", module: "Temel modül" },
-    about: { title: "APTUS hakkında", aside: "Endüstriyel prefabrik beton yapı yaklaşımımıza kısa bir bakış", quote: "Eleman tasarımından montaja kadar tek bir koordineli süreç.", abstract: "APTUS İran, prefabrik beton elemanların endüstriyel üretimine ve endüstriyel yapılar için modüler bir sistem geliştirmeye odaklanır. Tasarım, fabrika üretimi, taşıma ve saha montajı; kontrollü kaliteyi desteklemek ve şantiye işlerini azaltmak için birlikte ele alınır.", extra: "Bu katalog, yapısal elemanları koordine etmek ve sahadaki ıslak imalatı azaltmak amacıyla geliştirilen APTUS modüler prefabrik beton yapı sistemini tanıtır.", link: "Sistemi keşfet", legal: "İnşaat, üretim ve araştırma şirketi", location: "İran" },
-    system: { title: "Sistem", aside: "APTUS modüler prefabrik beton endüstriyel yapı sistemi", imageAlt: "Yapı iskeleti ve bileşenlerinin teknik üç boyutlu görünümü", caption: "Teknik iskelet görünümü / sağlanan görsel arşiv", lead: "Endüstriyel alanlar için, sahaya gelmeden önce üretilen elemanlardan oluşan modüler bir yapı.", p1: "Katalogda üç yükseklik tipi ve altı açıklık tipi tanımlanır. 50.000 m² üzerindeki siparişlerde, proje gereksinimlerine göre açıklık ve yükseklikte değişiklik değerlendirilebilir.", p2: "Çatı ve duvar kaplaması siparişe göre sandviç panel veya donatılı AAC panel olabilir. Tipler, 10 tona kadar tavan vinci için hazırlıklı ya da vinçsiz tasarlanabilir.", stats: ["yükseklik tipi", "açıklık tipi", "m / temel modül"] },
-    types: { title: "Tipler ve ölçüler", aside: "Ölçüleri ve açıklamayı görmek için bir kombinasyon seçin.", intro: "Üç yükseklik (3H / 4H / 5H) ve altı açıklık (5M–10M), 18 standart kombinasyon oluşturur. Bu sistemde H = M = 2,4 m.", scroll: "Tablonun tamamı için yana kaydırın →", region: "18 yükseklik ve açıklık kombinasyonundan oluşan kaydırılabilir tablo", underRoof: "Çatı altı yüksekliği", clearSpan: "Net açıklık", meter: "m", view: "Detayları gör", cell: "{type} tipi, {span} m açıklık ve {height} m yükseklik", notes: ["Kolonların dıştan dışa genişliği net açıklıktan 1,2 m fazladır.", "Kaynak tabloda 11M ve 12M araştırma aşamasında gösterilir; burada standart kombinasyon olarak listelenmez.", "Çatı ve duvar kaplaması ile vinç hazırlığı, siparişe ve nihai proje tasarımına bağlıdır."] },
-    parts: { title: "Sistem bileşenleri", aside: "Sağlanan arşivdeki dokuz prefabrik elemanın özeti ve tam teknik açıklamaları.", imageAlt: "{name} bileşeninin üç boyutlu görseli" },
-    explore: { title: "Etkileşimli montaj", aside: "Bileşeni önizlemek ve ayrıntı sayfasına geçmek için numaralı bir noktayı seçin.", diagramTitle: "Üç boyutlu iskelet ve çevre duvarları", diagramAlt: "APTUS sisteminin sekiz prefabrik elemanını gösteren numaralı montaj şeması", diagramHelp: "Bir bileşeni incelemek için görseldeki noktayı seçin.", selectGroup: "Seçilebilir bileşenler", select: "{name} göster", imageAlt: "{name} önizlemesi", more: "Daha fazla bilgi" },
-    benefits: { title: "Avantajlar", headline: "Uygulama ve performans avantajları", source: "APTUS teknik kataloğundan" },
-    contact: { title: "İletişim ve belgeler", aside: "Şirket konumu, iletişim kanalları ve sağlanan belgeler", intro: "Teknik bilgiler ve projenize uygun tip için şirketin resmî iletişim kanallarını kullanın.", location: "Konum", addressMissing: "Açık adres henüz paylaşılmadı.", phone: "Telefon", phoneMissing: "Resmî numara bekleniyor", documents: "Sertifikalar ve belgeler", documentsMissing: "Sağlanan dosyalarda doğrulanmış sertifika bulunmuyor.", documentsNext: "Resmî belgeler sağlandığında bu bölüm tamamlanacaktır." },
-    detail: { catalog: "Katalog", typeTitle: "{type} tipi", typeDescription: "Çatı altı yüksekliği {height} m ve net açıklığı {span} m olan APTUS tek açıklıklı prefabrik beton yapı.", backTypes: "Tip tablosuna dön", frame: "Şematik enine çerçeve", frameAlt: "{type} tipi için şematik çerçeve", drawingNote: "Şematik görünüm. Uygulama çizimleri ve bağlantılar projenin nihai tasarımına göre belirlenir.", dimensions: "Tip ölçüleri", outside: "Kolonlar dıştan dışa", module: "Temel modül", notes: "Bu kombinasyon hakkında", p1: "Bu tip, tek açıklıklı yapı tablosundaki standart kombinasyonlardan biridir. {spanCode} açıklığı ve {heightCode} yüksekliği 2,4 m modülüne dayanır.", p2: "Kaynak kataloğa göre çatı ve duvar kaplaması sipariş üzerine sandviç panel veya donatılı AAC panel olabilir. 10 tona kadar vinç hazırlığı proje tasarımına ve siparişe bağlıdır.", otherTypes: "Diğer tipler", previous: "Önceki tip", next: "Sonraki tip", backExplore: "Etkileşimli görünüme dön", partOf: "8 bileşenden {number}.", partRole: "Yapıdaki görevi", technical: "Teknik not", technicalNote: "Nihai ölçüler, geometri ve bağlantı ayrıntıları her projenin onaylı çizimlerine göre belirlenir.", placement: "Bu bileşenin montajdaki yerini görün." },
-    footer: { tagline: "Geleceği parça parça inşa ediyoruz.", summary: "Koordineli endüstriyel yapım için modüler prefabrik beton yapı sistemi.", explore: "Kataloğu keşfet", components: "Prefabrik bileşenler", contact: "İletişime geç", back: "Başa dön", rights: "Tüm hakları saklıdır.", missing: "Resmî iletişim bilgileri bekleniyor." }
+    nav: { home: "Başlangıç", types: "Tipler", standard: "Tek açıklıklı tipler", facades: "Cephe tasarımları", parts: "Bileşenler", overview: "Tüm bileşenler", interactive: "Etkileşimli görünüm", applications: "Kullanım alanları", benefits: "Avantajlar", contact: "Hakkımızda", contactInfo: "İletişim", documents: "Belgeler" },
+    more: "Daha fazla bilgi", fullText: "Tam açıklama ve görseller", sourcePdf: "Özgün teknik PDF", gallery: "Diğer görseller", galleryAlt: "{name} için {number} numaralı görünüm",
+    facades: { title: "Cephe fikirleri", aside: "Beton çevre duvarı ve sandviç panel kaplamaya yönelik sunulan tasarımlar", caption: "Tasarım", all: "Tüm tasarımlar", note: "APTUS arşivinde sağlanan cephe tasarımları." },
+    applications: { title: "Olası kullanım alanları", aside: "Sağlanan materyallerde yer alan beş kullanım kategorisi", note: "Görseller olası kullanımları gösterir; APTUS tarafından tamamlanmış projeleri göstermeleri gerekmez." },
+    benefits: { all: "Tüm avantajlar", detail: "Sistem avantajlarının tam listesi", count: "Üç grupta 25 konu", preview: "Tüm avantajları incele" },
+    documents: { all: "Tüm belgeler", title: "Sertifikalar ve belgeler", intro: "APTUS için sağlanan belgeler. Tarih ve güncel durumu özgün dosyadan kontrol edin.", view: "Dosyayı aç", preview: "Sağlanan belgeler" },
+    part: { preview: "Bileşen özeti", details: "Teknik açıklama", source: "Özgün teknik belge", additional: "Ek görseller", total: "9 bileşenden {number}.", corner: "Ek çevre duvarı bileşeni; sekiz noktalı montaj şemasında işaretli değildir." }
   }
 };
 
-export const translatedParts = {
+export const editorialParts = {
   en: {
-    column: { name: "Precast column", role: "Vertical load-bearing member and support for structural beams", description: "The precast column transfers roof loads to the foundation. Its built-in seats define where the upper frame components connect.", points: ["Part of the main frame", "Seats for longitudinal beams and roof girders", "Installed in a pocket foundation"] },
-    "longitudinal-beam": { name: "Longitudinal beam", role: "Connects frames along the building", description: "The longitudinal beam sits between successive frames and provides continuity along the shed. Its position and connections are coordinated with the final structural design.", points: ["Connects successive frames", "Factory-made precast element", "Coordinates with the longitudinal module"] },
-    girder: { name: "Roof girder / rafter", role: "Primary roof member spanning the frame", description: "The sloped roof girder spans the frame and carries loads from the roof elements to the columns. Its dimensions depend on the selected span and project design.", points: ["Forms the roof pitch", "Transfers roof loads to columns", "Sized for the selected span"] },
-    purlin: { name: "Purlin", role: "Secondary support for roof covering", description: "Purlins sit on the main roof structure and provide support for the final roof covering. Their layout is coordinated with the chosen covering.", points: ["Secondary roof member", "Supports the final covering", "Coordinates with the girders"] },
-    "self-standing-wall": { name: "Self-standing wall", role: "Optional concrete perimeter enclosure", description: "When ordered, self-standing concrete walls up to 2.20 m above finished floor level can be installed together with the shed frame.", points: ["Optional perimeter element", "Up to 2.20 m above finished floor", "Can be installed with the frame"] },
-    "tie-beam": { name: "Tie beam", role: "Connects elements at foundation level", description: "The tie beam sits between foundation elements at base level. It helps coordinate the base assembly and the position of perimeter elements.", points: ["Located at base level", "Coordinated with foundations", "Part of the precast assembly"] },
-    foundation: { name: "Pocket foundation", role: "Supports the column and transfers loads to the ground", description: "The pocket foundation receives the precast column. Its socket defines the column position and helps organize structural assembly.", points: ["Supports a precast column", "Defined column location", "Part of the foundation and frame system"] },
-    "wall-base": { name: "Wall base", role: "Base for perimeter wall panels", description: "The wall base runs along the shed perimeter and forms the support for precast concrete wall panels.", points: ["Perimeter element at base level", "Supports concrete walls", "Coordinates with the foundation layout"] }
+    column: {
+      role: "Primary vertical and lateral load-bearing member",
+      paragraphs: [
+        "Precast concrete columns transfer gravity and lateral forces from the upper structure into the foundation. Their design considers axial load, shear, bending moments, strength and stability.",
+        "The columns are produced under controlled factory conditions and installed in pocket foundations after delivery. This allows control over reinforcement and production quality while accelerating installation.",
+        "Column types vary with their position in the plan and the members connected to them. Corner and intermediate columns have different arrangements of projecting beam seats to suit their connections."
+      ]
+    },
+    "longitudinal-beam": {
+      role: "Rigid longitudinal connection between structural frames",
+      paragraphs: [
+        "Precast longitudinal beams run between successive columns and connect the main frames along the shed. Their rigid column connections distribute longitudinal forces and let the frames act together as a three-dimensional moment-resisting system under lateral loading and longitudinal movement.",
+        "The integrated action of beams, frames and roof makes it possible to omit diagonal braces in various parts of the shed, leaving more usable space for circulation and equipment.",
+        "These precast elements rest on the column's designated projecting beam seats and connect through designed details. A coordinated layout supports fast installation and reduces on-site work."
+      ]
+    },
+    girder: {
+      name: "Precast concrete roof girder", role: "Main roof-frame member transferring loads to columns",
+      paragraphs: [
+        "The roof girder receives loads from cladding, purlins, use and environmental effects, then transfers them to columns and foundations. It is designed for bending, shear, axial force and torsion according to the span and loading conditions.",
+        "Factory-made girders are designed in several types to standardize production, simplify quality control and speed on-site installation.",
+        "The girder-to-column joint uses an embedded I-shaped steel section and an eight-piece bolted connection. It transfers the designed forces while allowing the main precast frame to be assembled on site."
+      ]
+    },
+    purlin: {
+      name: "Precast concrete purlin", role: "Roof element transferring cladding loads to the girders",
+      paragraphs: [
+        "Precast concrete purlins take the roof-covering loads to the main girders, which pass them through the columns to the foundations.",
+        "In the documented arrangement, the connection of purlins, girders and reinforced lightweight-concrete panels contributes to diaphragm action. The roof is modeled as a rigid diaphragm to distribute in-plane forces to the load-bearing members.",
+        "The system uses one purlin type with a center-to-center length of 7.20 m.",
+        "Starter reinforcement and grout form the purlin-to-girder connection, providing support and structural continuity at the joint."
+      ]
+    },
+    "self-standing-wall": {
+      role: "Independent precast perimeter wall",
+      paragraphs: [
+        "The lower perimeter walls are designed independently of the main frame and have no structural connection to the columns. Their own foundation takes the wall loads. A tie beam integrated at the base of each precast wall is bolted to the foundation; the wall foundation also acts as the tie between columns.",
+        "Three modular wall types have center-to-center lengths of 4.8, 6 and 7.2 m for the longitudinal and transverse bays. This matches the structural grid and helps production, shipping and assembly.",
+        "Each wall carries its own loads and imposed actions such as wind, transferring them through the base and fixings to its foundation rather than the main frame.",
+        "The precast approach reduces work on site and supports consistent dimensions and installation quality. Modular access openings can be placed where the architectural plan requires them."
+      ]
+    },
+    "tie-beam": {
+      role: "Transverse precast ties for overall structural stability",
+      paragraphs: [
+        "Transverse tie beams are provided at selected positions along the shed to improve overall stability, link the cross frames, and control deformation and torsion along its length. Two tie beams extend across the full width.",
+        "They connect elements on both sides, help distribute lateral and torsional forces, and improve system behavior, especially in longer sheds.",
+        "The ties are also precast and coordinated with the other elements for faster assembly on site."
+      ]
+    },
+    foundation: {
+      role: "Precast pocket foundation for column loads",
+      paragraphs: [
+        "The pocket foundation transfers vertical and lateral forces and moments from the precast column into the ground. The column is seated in its socket; grout completes the connection according to the designed detail after installation.",
+        "Four single-span foundation types are designated F50F2, F51F2, F52F2 and F53F2, reflecting different positions, forces and geometry. Their dimensions and reinforcement follow the requirements of each location.",
+        "The socket gives the column a defined position and facilitates assembly. Independent production of columns and foundations supports factory quality control and reduces work on site.",
+        "The documented foundation dimensions are based on site and geotechnical conditions in Alborz province. For a different location or soil, the design must be checked and revised as needed using the project's geotechnical study and design loads."
+      ]
+    },
+    "corner-wall": {
+      name: "Precast corner wall", role: "Completes the perimeter at the four corners",
+      paragraphs: [
+        "Precast corner-wall elements cover the junction between the self-standing walls and corner columns at the four corners of the shed, giving the perimeter a continuous appearance.",
+        "Each piece is designed for the geometry of that junction. Factory production reduces the on-site work and materials needed to finish these areas."
+      ]
+    }
   },
   tr: {
-    column: { name: "Prefabrik kolon", role: "Düşey taşıyıcı ve yapısal kiriş desteği", description: "Prefabrik kolon, çatı yüklerini temele aktarır. Elemandaki hazır mesnetler, üst çerçeve elemanlarının bağlantı yerlerini tanımlar.", points: ["Ana çerçevenin parçası", "Boyuna kiriş ve çatı kirişi için mesnetler", "Soket temele yerleştirilir"] },
-    "longitudinal-beam": { name: "Boyuna kiriş", role: "Çerçeveleri yapı boyunca birbirine bağlar", description: "Boyuna kiriş, ardışık çerçeveler arasında bulunur ve yapı boyunca süreklilik sağlar. Konumu ve bağlantıları nihai taşıyıcı tasarımla koordine edilir.", points: ["Ardışık çerçeveleri bağlar", "Fabrikada üretilen prefabrik eleman", "Boyuna modülle uyumludur"] },
-    girder: { name: "Çatı ana kirişi / mertek", role: "Açıklığı geçen ana çatı elemanı", description: "Eğimli çatı ana kirişi açıklığı geçer ve çatı yüklerini kolonlara aktarır. Ölçüleri seçilen açıklığa ve proje tasarımına bağlıdır.", points: ["Çatı eğimini oluşturur", "Çatı yüklerini kolonlara aktarır", "Seçilen açıklığa göre boyutlandırılır"] },
-    purlin: { name: "Aşık kirişi", role: "Çatı kaplaması için ikincil destek", description: "Aşıklar ana çatı yapısına yerleştirilir ve son çatı kaplamasını taşır. Yerleşimleri seçilen kaplamayla koordine edilir.", points: ["İkincil çatı elemanı", "Son kaplamayı destekler", "Ana kirişlerle uyumludur"] },
-    "self-standing-wall": { name: "Kendinden taşıyıcı duvar", role: "İsteğe bağlı beton çevre kaplaması", description: "Sipariş edildiğinde, bitmiş döşeme seviyesinden 2,20 m yüksekliğe kadar kendinden taşıyıcı beton duvarlar iskeletle birlikte kurulabilir.", points: ["İsteğe bağlı çevre elemanı", "Bitmiş döşemeden 2,20 m yüksekliğe kadar", "İskeletle birlikte kurulabilir"] },
-    "tie-beam": { name: "Bağ kirişi", role: "Temel seviyesindeki elemanları bağlar", description: "Bağ kirişi, temel elemanları arasında taban seviyesinde yer alır. Taban bütününün ve çevre elemanlarının yerleşiminin koordine edilmesine yardımcı olur.", points: ["Taban seviyesinde yer alır", "Temellerle koordine edilir", "Prefabrik bütünün parçasıdır"] },
-    foundation: { name: "Soket temel", role: "Kolonu taşır ve yükleri zemine aktarır", description: "Soket temel, prefabrik kolonu yerleştirmek için tasarlanır. Soket, kolonun konumunu tanımlar ve yapısal montajı düzenler.", points: ["Prefabrik kolonu taşır", "Belirli kolon konumu sağlar", "Temel ve çerçeve sisteminin parçasıdır"] },
-    "wall-base": { name: "Duvar tabanı", role: "Çevre duvar panellerinin tabanı", description: "Duvar tabanı yapı çevresi boyunca uzanır ve prefabrik beton duvar panelleri için destek oluşturur.", points: ["Taban seviyesinde çevre elemanı", "Beton duvarları destekler", "Temel düzeniyle uyumludur"] }
+    column: {
+      role: "Düşey ve yatay yüklere karşı ana taşıyıcı kolon",
+      paragraphs: [
+        "Prefabrik beton kolonlar, üst yapıdan gelen düşey ve yatay yükleri temele aktarır. Tasarımda eksenel kuvvet, kesme, eğilme momentleri, dayanım ve stabilite dikkate alınır.",
+        "Kontrollü fabrika koşullarında üretilen kolonlar, sahaya taşındıktan sonra soket temellere yerleştirilir. Bu yöntem donatı ve üretim kalitesinin kontrolünü, daha hızlı montajı sağlar.",
+        "Kolon tipleri plandaki konuma ve bağlanan elemanlara göre değişir. Köşe ve ara kolonlardaki konsol kirişlerin yerleşimi bağlantı gereksinimlerine göre farklıdır."
+      ]
+    },
+    "longitudinal-beam": {
+      role: "Ana çerçeveler arasında rijit boyuna bağlantı",
+      paragraphs: [
+        "Prefabrik boyuna kirişler ardışık kolonlar arasında uzanır ve ana çerçeveleri yapı boyunca rijit bağlantılarla birleştirir. Yükleri dağıtarak çerçevelerin yatay kuvvetlere karşı bütünleşik üç boyutlu moment aktaran sistem gibi çalışmasını sağlar.",
+        "Kiriş, çerçeve ve çatının birlikte çalışması, bazı bölümlerde çapraz gergilerin kaldırılmasına olanak tanır; geçiş ve ekipman yerleşimi için daha açık alan bırakır.",
+        "Elemanlar kolonlarda öngörülen konsol kirişlere oturur ve tasarlanmış detaylarla bağlanır. Düzenli prefabrik yerleşim sahadaki işleri azaltır ve montajı hızlandırır."
+      ]
+    },
+    girder: {
+      name: "Prefabrik beton ana çatı kirişi", role: "Çatı yüklerini kolonlara aktaran ana taşıyıcı",
+      paragraphs: [
+        "Ana çatı kirişi; kaplama, aşık, kullanım ve çevre yüklerini alarak kolonlara ve temellere iletir. Açıklık ve yüklere göre eğilme, kesme, eksenel kuvvet ve burulma için tasarlanır.",
+        "Kirişler fabrikada birkaç standart tipte üretilir; bu, kalite kontrolünü ve sahadaki montajı kolaylaştırır.",
+        "Kolon bağlantısında gömülü I kesitli çelik parça ve sekiz parçalı cıvatalı birleşim kullanılır. Bu birleşim tasarım kuvvetlerini aktarırken prefabrik ana çerçevenin sahada montajını sağlar."
+      ]
+    },
+    purlin: {
+      name: "Prefabrik beton aşık", role: "Çatı kaplama yüklerini ana kirişlere aktarır",
+      paragraphs: [
+        "Prefabrik beton aşıklar, çatı kaplamasından gelen yükleri ana kirişlere; oradan kolonlara ve temellere iletir.",
+        "Belgelenen düzenlemede aşıkların ana kirişlerle ve donatılı hafif beton panellerle bağlantısı çatı diyaframı davranışına katkı sağlar. Çatı, düzlem içi kuvvetlerin dağıtılması için rijit diyafram olarak modellenmiştir.",
+        "Sistemde akslar arası uzunluğu 7,20 m olan tek bir aşık tipi kullanılır.",
+        "Aşıklar ana kirişlere filiz donatıları ve grout ile bağlanır; birleşimde mesnet ve süreklilik sağlanır."
+      ]
+    },
+    "self-standing-wall": {
+      role: "Ana çerçeveden bağımsız prefabrik çevre duvarı",
+      paragraphs: [
+        "Alt çevre duvarları ana çerçeveden bağımsız tasarlanır; kolonlarla yapısal bağlantıları yoktur. Yükleri kendi temellerine aktarırlar. Duvar tabanındaki bütünleşik bağ kirişi, temele cıvatalanır; duvar temeli kolonlar arasındaki bağı da oluşturur.",
+        "Boyuna ve enine açıklıklar için akslar arası 4,8, 6 ve 7,2 m uzunluklarında üç modüler duvar tipi vardır. Ölçüler yapısal ızgaraya uyum sağlayarak üretimi, taşımayı ve montajı kolaylaştırır.",
+        "Duvar; kendi ağırlığını ve rüzgâr gibi etkileri taşır, bunları bağlantıları aracılığıyla kendi temeline aktarır; ana çerçeveye yük bindirmez.",
+        "Prefabrik çözüm sahadaki işleri azaltır, ölçü ve montaj kalitesini destekler. Mimari planda gereken yerlerde modüler giriş açıklıkları düzenlenebilir."
+      ]
+    },
+    "tie-beam": {
+      role: "Yapının bütünlüğü için enine prefabrik bağ",
+      paragraphs: [
+        "Enine bağ kirişleri, genel stabiliteyi artırmak, enine çerçeveleri birleştirmek ve boyuna doğrultudaki deformasyon ile burulmayı sınırlamak için belirli aralıklarla kullanılır. İki bağ kirişi yapının tüm enini geçer.",
+        "Her iki taraftaki elemanları bağlayıp yatay ve burulma kuvvetlerinin dağılımına yardımcı olurlar; özellikle uzun yapılarda bütünleşik davranışı iyileştirirler.",
+        "Bu bağlar da diğer elemanlarla uyumlu prefabrik parçalar olarak üretilir ve sahada hızlı monte edilir."
+      ]
+    },
+    foundation: {
+      role: "Kolon yükleri için prefabrik soket temel",
+      paragraphs: [
+        "Soket temel, kolondan gelen düşey ve yatay kuvvetler ile momentleri zemine aktarır. Prefabrik kolon yuvasına yerleştirilir ve bağlantı, montajdan sonra tasarım detaylarına göre grout ile tamamlanır.",
+        "Tek açıklıklı yapıda konum, kuvvet ve geometriye göre F50F2, F51F2, F52F2 ve F53F2 olmak üzere dört temel tipi öngörülmüştür. Ölçüler ve donatı her konumun tasarımına göre belirlenir.",
+        "Soket geometrisi kolonun yerini tanımlar ve montajı kolaylaştırır. Kolonlarla temellerin bağımsız üretimi kalite kontrolünü ve sahadaki işlerin azaltılmasını destekler.",
+        "Belgelenen ölçüler Alborz bölgesinin zemin ve jeoteknik koşullarına dayanır. Farklı bir yer veya zemin için tasarım, proje yükleri ve jeoteknik etütle yeniden kontrol edilmeli, gerekirse değiştirilmelidir."
+      ]
+    },
+    "corner-wall": {
+      name: "Prefabrik köşe duvarı", role: "Çevre duvarını dört köşede tamamlar",
+      paragraphs: [
+        "Prefabrik köşe duvarları, yapının dört köşesinde bağımsız duvarlarla köşe kolonlarının birleşimini kapatarak çevre duvarına kesintisiz bir görünüm verir.",
+        "Parçalar bağlantı geometrisine göre tasarlanır. Fabrika üretimi, bu alanları tamamlamak için sahada gereken iş ve malzemeyi azaltır."
+      ]
+    }
   }
 };
 
-export const translatedBenefits = {
-  en: ["Fast production and assembly", "Factory-controlled quality", "Durability in varied weather", "Fire performance to project requirements", "Less in-situ concrete during assembly", "Provision for overhead cranes up to 10 tonnes", "Flexible roof and wall coverings", "Applicable in Iran's seismic zones", "Coordinated services routes", "Compatible modules for ancillary spaces", "Openings and access across the spans", "Reduced dependence on early site infrastructure"],
-  tr: ["Hızlı üretim ve montaj", "Fabrika ortamında kalite kontrolü", "Farklı iklim koşullarında dayanıklılık", "Proje gereklerine göre yangın performansı", "Montajda daha az yerinde beton dökümü", "10 tona kadar tavan vinci hazırlığı", "Esnek çatı ve duvar kaplamaları", "İran'ın deprem bölgelerinde uygulanabilirlik", "Tesisat geçişlerinin koordinasyonu", "Yan alanlar için uyumlu modüller", "Açıklıklarda erişim ve boşluk imkânı", "İlk şantiye altyapısına daha az bağımlılık"]
+export const editorialBenefits = {
+  en: [
+    { title: "Construction and execution", items: [
+      "Rapid installation of the structural frame and exterior envelope", "Production to international standards", "Design earthquake resistance to Iranian Standard 2800", "Loading in line with Chapter 6 of the National Building Regulations", "Damaged elements can be replaced", "Horizontal expansion is possible", "Long-term outdoor storage is possible", "No diagonal bracing elements", "Can use lightweight concrete roof systems", "Significant reduction in structural steel", "Precast concrete perimeter walls replace masonry", "Resistance to blast waves and indirect debris when reinforced lightweight-concrete panels are used", "Resistance to natural and chemical corrosion"
+    ] },
+    { title: "Fire, energy and acoustic performance", items: [
+      "Fire performance according to national building requirements", "Thermal insulation in line with Chapter 19 to limit energy loss", "Less material waste and its associated energy loss", "Acoustic insulation", "Recyclability"
+    ] },
+    { title: "Economics and operation", items: [
+      "Less waste from wall construction", "Shorter investment payback period through faster construction", "Longer service life against corrosion and fire", "Potential savings on perimeter wall finishes", "Potential savings in transporting wall and foundation materials", "Lower energy use in operation", "Lower fixed and overhead project costs"
+    ] }
+  ],
+  tr: [
+    { title: "Yapım ve uygulama", items: [
+      "Taşıyıcı sistem ve dış kabuğun hızlı montajı", "Uluslararası standartlara göre üretim", "İran Standardı 2800'e göre tasarım depremine dayanım", "Ulusal Yapı Yönetmeliği 6. Bölüme uygun yükleme", "Hasarlı elemanların değiştirilebilmesi", "Yatay genişleme olanağı", "Açık alanda uzun süreli depolama", "Çapraz gergi elemanlarının kaldırılması", "Hafif beton çatı sistemlerinin kullanımı", "Yapısal çelik kullanımında önemli azalma", "Çevre duvarında yığma malzeme yerine prefabrik beton", "Donatılı hafif beton paneller kullanıldığında patlama dalgası ve dolaylı parçalara karşı dayanım", "Doğal ve kimyasal korozyona dayanım"
+    ] },
+    { title: "Yangın, enerji ve akustik", items: [
+      "Ulusal yapı kurallarına göre yangın performansı", "Enerji kaybını azaltmak için 19. Bölüme uygun ısı yalıtımı", "Daha az malzeme kaybı ve buna bağlı enerji kaybı", "Akustik yalıtım", "Geri dönüştürülebilirlik"
+    ] },
+    { title: "Ekonomi ve işletme", items: [
+      "Duvar yapımında daha az malzeme kaybı", "Hızlı uygulamayla daha kısa yatırım geri dönüş süresi", "Korozyon ve yangına karşı daha uzun kullanım ömrü", "Çevre duvarı cephesinde olası tasarruf", "Duvar ve temel malzemelerinin taşınmasında olası tasarruf", "İşletmede daha az enerji tüketimi", "Daha düşük sabit ve genel proje giderleri"
+    ] }
+  ]
+};
+
+export const editorialApplications = {
+  en: { education: "Educational buildings", storage: "Warehouses", production: "Light manufacturing and assembly", industry: "Heavy industry", sport: "Sports buildings" },
+  tr: { education: "Eğitim yapıları", storage: "Depolar", production: "Hafif üretim ve montaj", industry: "Ağır sanayi", sport: "Spor yapıları" }
+};
+
+export const editorialDocumentTitles = {
+  en: ["Commendation · 1402", "Commendation · 1404", "Certificate · 1402", "Safety qualification · 1404", "Scanned certificate", "ISO 14001", "ISO 45001", "ISO 9001", "Ready-mix concrete production permit · 1402", "Precast element production permit · 1403", "Precast element permit · reverse and front", "Research and development permit"],
+  tr: ["Takdirname · 1402", "Takdirname · 1404", "Sertifika · 1402", "İş güvenliği yeterliği · 1404", "Taranmış sertifika", "ISO 14001", "ISO 45001", "ISO 9001", "Hazır beton üretim izni · 1402", "Prefabrik eleman üretim izni · 1403", "Prefabrik eleman izni · ön ve arka", "Araştırma ve geliştirme izni"]
 };
