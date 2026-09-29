@@ -113,7 +113,7 @@ function catalog() {
         <div class="cover-company"><img src="./assets/aptus-logo.jpg" alt="" style="border-radius: 0px;" width="54" height="54"><span><strong>${ui.about.legal}<br>${companyName}</strong></span></div>
         <!-- <a class="cover-scroll" href="${pageLink("about")}">${ui.cover.enter}<span aria-hidden="true">↓</span></a> -->
       </div>
-      <div class="cover-visual"><div class="visual-stage"><img src="./assets/cover-render.jpg" alt="${ui.cover.visualAlt}"></div></div>
+      <div class="cover-visual"><div class="visual-stage"><img src="./assets/cover-render1.jpg" alt="${ui.cover.visualAlt}"></div></div>
     </section>
 
     <section id="about" class="page-section about-section"><div class="section-inner">
