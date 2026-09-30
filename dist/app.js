@@ -169,20 +169,270 @@ function catalog() {
 }
 
 function frameDiagram(h, s) {
+  /*
+   * Professional technical-drawing style dimensions
+   * - Thin orange dimension lines
+   * - Closed filled arrowheads
+   * - Proper extension lines
+   * - Clear spacing between object and dimensions
+   * - Consistent typography
+   */
+
   const width = 250 + s.module * 32;
-  const x1 = (760-width)/2, x2 = x1+width;
-  const bottom = 296, eaves = 190-(h.module-3)*27, peak = eaves-35;
-  return `<svg class="frame-diagram" role="img" aria-label="${text(ui.detail.frameAlt,{type:typeName(h.module,s.module)})}" viewBox="0 0 760 420" xmlns="http://www.w3.org/2000/svg">
-    <defs><marker id="arr" viewBox="0 0 8 8" refX="4" refY="4" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M8 0 0 4 8 8" fill="none" stroke="#f58220" stroke-width="1.4"/></marker></defs>
-    <path d="M70 ${bottom+8}H690" stroke="#e6e6e6" stroke-width="1.4" stroke-dasharray="5 5"/>
-    <path d="M${x1} ${bottom}V${eaves}L380 ${peak}L${x2} ${eaves}V${bottom}" fill="none" stroke="#58595b" stroke-width="13" stroke-linejoin="round"/>
-    <path d="M${x1-21} ${bottom+2}h42v18h-42z M${x2-21} ${bottom+2}h42v18h-42z" fill="#666666"/>
-    <path d="M${x1} ${bottom+47}H${x2}" stroke="#f58220" stroke-width="1.7" marker-start="url(#arr)" marker-end="url(#arr)"/>
-    <path d="M${x1} ${bottom+10}v50 M${x2} ${bottom+10}v50" stroke="#f58220" stroke-width="1"/>
-    <path d="M${x2+44} ${bottom}V${eaves}" stroke="#f58220" stroke-width="1.7" marker-start="url(#arr)" marker-end="url(#arr)"/>
-    <path d="M${x2+5} ${bottom}h55 M${x2+5} ${eaves}h55" stroke="#f58220" stroke-width="1"/>
-    <text x="380" y="${bottom+81}" text-anchor="middle" font-family="sans-serif" font-size="20" fill="#58595b">${n(s.clearCm/100)} m</text>
-    <text x="${x2+77}" y="${(bottom+eaves)/2+5}" text-anchor="middle" font-family="sans-serif" font-size="18" fill="#58595b">${n(h.underRoofCm/100)} m</text>
+  const x1 = (760 - width) / 2;
+  const x2 = x1 + width;
+
+  const bottom = 296;
+  const eaves = 190 - (h.module - 3) * 27;
+  const peak = eaves - 35;
+
+  /* Dimension styling */
+  const dimColor = "#f58220";
+  const dimTextColor = "#58595b";
+
+  const extensionStroke = 1.15;
+  const dimensionStroke = 1.5;
+  const textSize = 17;
+
+  /* -----------------------------------------
+     HORIZONTAL DIMENSION — CLEAR SPAN
+     ----------------------------------------- */
+
+  const horizontalDimY = bottom + 52;
+
+  const horizontalExtTop = bottom + 4;
+  const horizontalExtBottom = horizontalDimY + 11;
+
+  /* -----------------------------------------
+     VERTICAL DIMENSION — UNDER ROOF HEIGHT
+     ----------------------------------------- */
+
+  const verticalDimX = Math.min(x2 + 50, 700);
+
+  const verticalExtEnd = verticalDimX + 10;
+
+  const verticalTextX = verticalDimX + 9;
+  const verticalTextY = (bottom + eaves) / 2;
+
+  const horizontalLabel = `${n(s.clearCm / 100)} m`;
+  const verticalLabel = `${n(h.underRoofCm / 100)} m`;
+
+  return `
+  <svg
+    class="frame-diagram"
+    role="img"
+    aria-label="${text(
+      ui.detail.frameAlt,
+      { type: typeName(h.module, s.module) }
+    )}"
+    viewBox="0 0 760 420"
+    xmlns="http://www.w3.org/2000/svg"
+  >
+
+    <defs>
+
+      <!-- Professional filled technical-drawing arrow -->
+      <marker
+        id="dimArrow"
+        viewBox="0 0 10 10"
+        refX="5"
+        refY="5"
+        markerWidth="6"
+        markerHeight="6"
+        orient="auto-start-reverse"
+      >
+        <path
+          d="M0 0 L10 5 L0 10 Z"
+          fill="${dimColor}"
+        />
+      </marker>
+
+    </defs>
+
+
+    <!-- =========================================
+         REFERENCE / GROUND LINE
+         ========================================= -->
+
+    <path
+      d="M70 ${bottom + 8} H690"
+      stroke="#e6e6e6"
+      stroke-width="1.4"
+      stroke-dasharray="5 5"
+      fill="none"
+    />
+
+
+    <!-- =========================================
+         MAIN STRUCTURE
+         ========================================= -->
+
+    <path
+      d="
+        M${x1} ${bottom}
+        V${eaves}
+        L380 ${peak}
+        L${x2} ${eaves}
+        V${bottom}
+      "
+      fill="none"
+      stroke="#58595b"
+      stroke-width="13"
+      stroke-linejoin="round"
+    />
+
+    <!-- Base plates -->
+
+    <path
+      d="
+        M${x1 - 21} ${bottom + 2}
+        h42
+        v18
+        h-42
+        z
+
+        M${x2 - 21} ${bottom + 2}
+        h42
+        v18
+        h-42
+        z
+      "
+      fill="#666666"
+    />
+
+
+    <!-- =========================================
+         HORIZONTAL DIMENSION
+         CLEAR SPAN
+         ========================================= -->
+
+
+    <!-- Extension lines -->
+
+    <path
+      d="
+        M${x1} ${horizontalExtTop}
+        V${horizontalExtBottom}
+
+        M${x2} ${horizontalExtTop}
+        V${horizontalExtBottom}
+      "
+      fill="none"
+      stroke="${dimColor}"
+      stroke-width="${extensionStroke}"
+    />
+
+
+    <!-- Dimension line -->
+
+    <path
+      d="
+        M${x1} ${horizontalDimY}
+        H${x2}
+      "
+      fill="none"
+      stroke="${dimColor}"
+      stroke-width="${dimensionStroke}"
+      marker-start="url(#dimArrow)"
+      marker-end="url(#dimArrow)"
+    />
+
+
+    <!-- Dimension label background -->
+
+    <rect
+      x="${(x1 + x2) / 2 - 45}"
+      y="${horizontalDimY - textSize / 2 - 5}"
+      width="90"
+      height="${textSize + 10}"
+      rx="2"
+      fill="#ffffff"
+    />
+
+
+    <!-- Dimension label -->
+
+    <text
+      x="${(x1 + x2) / 2}"
+      y="${horizontalDimY}"
+      text-anchor="middle"
+      dominant-baseline="middle"
+      font-family="Arial, Helvetica, sans-serif"
+      font-size="${textSize}"
+      font-weight="500"
+      letter-spacing="0.2"
+      fill="${dimTextColor}"
+    >
+      ${horizontalLabel}
+    </text>
+
+
+
+    <!-- =========================================
+         VERTICAL DIMENSION
+         UNDER-ROOF HEIGHT
+         ========================================= -->
+
+
+    <!-- Horizontal extension lines -->
+
+    <path
+      d="
+        M${x2 + 5} ${eaves}
+        H${verticalExtEnd}
+
+        M${x2 + 5} ${bottom}
+        H${verticalExtEnd}
+      "
+      fill="none"
+      stroke="${dimColor}"
+      stroke-width="${extensionStroke}"
+    />
+
+
+    <!-- Vertical dimension line -->
+
+    <path
+      d="
+        M${verticalDimX} ${bottom}
+        V${eaves}
+      "
+      fill="none"
+      stroke="${dimColor}"
+      stroke-width="${dimensionStroke}"
+      marker-start="url(#dimArrow)"
+      marker-end="url(#dimArrow)"
+    />
+
+
+    <!-- Vertical dimension label background -->
+
+    <rect
+      x="${verticalTextX - 34}"
+      y="${verticalTextY - textSize / 2 - 5}"
+      width="68"
+      height="${textSize + 10}"
+      rx="2"
+      fill="#ffffff"
+    />
+
+
+    <!-- Vertical dimension label -->
+
+    <text
+      x="${verticalTextX}"
+      y="${verticalTextY}"
+      text-anchor="middle"
+      dominant-baseline="middle"
+      font-family="Arial, Helvetica, sans-serif"
+      font-size="${textSize}"
+      font-weight="500"
+      letter-spacing="0.2"
+      fill="${dimTextColor}"
+    >
+      ${verticalLabel}
+    </text>
+
   </svg>`;
 }
 
