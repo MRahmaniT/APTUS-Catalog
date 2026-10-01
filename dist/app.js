@@ -223,7 +223,7 @@ function frameDiagram(h, s) {
       ui.detail.frameAlt,
       { type: typeName(h.module, s.module) }
     )}"
-    viewBox="0 0 760 420"
+    viewBox="${x1 - 35} ${peak - 35} ${width + 70} ${bottom - peak + 85}"
     direction="ltr"
     xmlns="http://www.w3.org/2000/svg"
   >
@@ -443,7 +443,7 @@ function typeDetail(h, s) {
   document.title = `${text(ui.detail.typeTitle,{type})} | APTUS IRAN`;
   return `${header("types")}<main class="detail-main"><div class="detail-container"><nav class="breadcrumbs" aria-label="${ui.detail.catalog}"><a href="${pageLink("cover")}">${ui.detail.catalog}</a><span>›</span><a href="${pageLink("types")}">${ui.types.title}</a><span>›</span><strong dir="ltr">${type}</strong></nav>
     <div class="detail-heading"><div><span class="eyebrow">AIPS / ${String(index+1).padStart(2,"0")}</span><h1>${text(ui.detail.typeTitle,{type:`<bdi dir="ltr">${type}</bdi>`})}</h1><p>${text(ui.detail.typeDescription,{height:n(h.underRoofCm/100),span:n(s.clearCm/100)})}</p></div><a class="outline-button" href="${pageLink("types")}">${ui.detail.backTypes}${arrow("back")}</a></div>
-    <div class="detail-grid"><div class="detail-visual"><div class="drawing-header"><span>${ui.detail.frame}</span><bdi dir="ltr">AIPS / ${h.module}H-${s.module}M</bdi></div>${frameDiagram(h,s)}<div class="drawing-foot">${ui.detail.drawingNote}</div></div><aside class="dimension-panel"><h2>${ui.detail.dimensions}</h2><dl><div><dt>${ui.types.clearSpan}</dt><dd>${n(s.clearCm/100)} <small>${ui.types.meter}</small></dd></div><div><dt>${ui.detail.outside}</dt><dd>${n(s.axesCm/100)} <small>${ui.types.meter}</small></dd></div><div><dt>${ui.types.underRoof}</dt><dd>${n(h.underRoofCm/100)} <small>${ui.types.meter}</small></dd></div><div><dt>${ui.detail.module}</dt><dd>${n(2.4)} <small>${ui.types.meter}</small></dd></div></dl></aside></div>
+    <div class="detail-grid type-detail-grid"><div class="detail-visual"><div class="drawing-header"><span>${ui.detail.frame}</span><bdi dir="ltr">AIPS / ${h.module}H-${s.module}M</bdi></div>${frameDiagram(h,s)}<div class="drawing-foot">${ui.detail.drawingNote}</div></div></div>
     <div class="detail-lower"><div><span class="eyebrow">AIPS / ${type}</span><h2>${ui.detail.notes}</h2><p>${text(ui.detail.p1,{spanCode:`<bdi dir="ltr">${s.module}M</bdi>`,heightCode:`<bdi dir="ltr">${h.module}H</bdi>`})}</p><p>${ui.detail.p2}</p></div><nav class="type-navigation" aria-label="${ui.detail.otherTypes}"><span>${ui.detail.otherTypes}</span><a href="${typeLink(previous[0].module,previous[1].module)}">${arrow("back")}<span>${ui.detail.previous} <bdi dir="ltr">${typeName(previous[0].module,previous[1].module)}</bdi></span></a><a href="${typeLink(next[0].module,next[1].module)}"><span>${ui.detail.next} <bdi dir="ltr">${typeName(next[0].module,next[1].module)}</bdi></span>${arrow()}</a></nav></div>
   </div></main>${footer()}`;
 }
