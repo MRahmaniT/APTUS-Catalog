@@ -26,12 +26,12 @@ html[lang=en] .cover-copy h1,html[lang=tr] .cover-copy h1{font-size:clamp(3rem,4
 @media(max-width:580px){html[lang=en] .cover-copy h1,html[lang=tr] .cover-copy h1{font-size:clamp(2.15rem,9vw,3rem)}}
 @media(prefers-reduced-transparency:reduce){.site-header,.about-grid>div,.system-copy,.part-card,.preview-panel,.benefit-list li{backdrop-filter:none;-webkit-backdrop-filter:none;background:#ffffff}}
 
-/* Cover: one continuous CAD render, fading into a soft navy field for the copy. */
+/* Cover: one continuous, unobscured render behind the copy. */
 main:not(.detail-main){padding-top:110px}
 .cover-section{position:relative;isolation:isolate;display:block;min-height:760px;background:#ffffff}
-.cover-section::before,.cover-section::after{content:"";position:absolute;inset:0;z-index:1;pointer-events:none}
-.cover-section::before{right:0;left:auto;width:76%;backdrop-filter:blur(11px) saturate(.82);-webkit-backdrop-filter:blur(11px) saturate(.82);mask-image:linear-gradient(to left,#000000 0%,#000000 47%,transparent 100%);-webkit-mask-image:linear-gradient(to left,#000000 0%,#000000 47%,transparent 100%)}
-.cover-section::after{background:linear-gradient(to left, #333333c8 0%,#333333b0 47%,#33333370 78%,#33333390 100%,transparent 84%)}
+
+
+
 .cover-copy{z-index:2;width:min(60%,930px);min-height:760px;margin-inline-end:auto;padding:68px clamp(36px,5.1vw,94px) 38px;background:transparent}
 .cover-copy::after{display:none}
 .cover-title-wrap{padding-block:28px}
@@ -42,11 +42,11 @@ main:not(.detail-main){padding-top:110px}
 .visual-topline,.visual-footer{position:absolute;z-index:2;left:4.6%;width:35%;font-size:.77rem;color:#58595b}
 .visual-topline{top:36px}.visual-footer{bottom:33px;padding-top:10px;border-color:#e6e6e6}
 .stage-label{z-index:2;bottom:84px;left:4.6%;color:#58595b}
-html[dir=ltr] .cover-section::before{left:0;right:auto;mask-image:linear-gradient(to right,#000000 0%,#000000 47%,transparent 100%);-webkit-mask-image:linear-gradient(to right,#000000 0%,#000000 47%,transparent 100%)}
-html[dir=ltr] .cover-section::after{background:linear-gradient(to right,#333333f7 0%,#333333f0 29%,#333333d9 47%,#33333385 65%,transparent 84%)}
+
+
 html[dir=ltr] .visual-topline,html[dir=ltr] .visual-footer,html[dir=ltr] .stage-label{left:auto;right:4.6%}
 @media(max-width:1000px){.cover-copy{width:65%;padding:65px 32px 34px}.visual-topline,.visual-footer{width:31%}.cover-copy h1{font-size:clamp(2.8rem,5vw,4.3rem)}}
-@media(max-width:800px){main:not(.detail-main){padding-top:110px}.cover-section{min-height:680px}.cover-copy{width:100%;min-height:680px;padding:44px 34px 35px}.cover-section::before{width:100%;mask-image:none;-webkit-mask-image:none}.cover-section::after,html[dir=ltr] .cover-section::after{background:linear-gradient(to bottom,#333333f5 0%,#333333eb 47%,#333333b5 78%,#333333cd 100%)}.visual-topline,.visual-footer,.stage-label{display:none}.visual-stage img{object-position:center}.cover-copy h1{max-width:680px}.cover-sub{max-width:610px}}
-@media(max-width:580px){main:not(.detail-main){padding-top:96px}.cover-section{min-height:640px}.cover-copy{min-height:640px;padding:35px 23px 29px}.cover-title-wrap{padding-block:25px}.cover-copy h1{font-size:clamp(2.45rem,10.3vw,3.6rem)}.visual-stage img{height:auto;width:145%;position:absolute;left:50%;bottom:36px;transform:translateX(-50%);object-fit:contain}.visual-stage::before{inset:13px}.cover-section::after,html[dir=ltr] .cover-section::after{background:linear-gradient(to bottom,#333333f8 0%,#333333f3 48%,#333333bd 76%,#333333e0 100%)}}
-@media(max-width:800px){html[dir=ltr] .cover-section::before{left:0;right:auto;width:100%;mask-image:none;-webkit-mask-image:none}}
-@media print{main:not(.detail-main){padding-top:0}.cover-section::before{display:none}}
+@media(max-width:800px){main:not(.detail-main){padding-top:110px}.cover-section{min-height:680px}.cover-copy{width:100%;min-height:680px;padding:44px 34px 35px}.visual-topline,.visual-footer,.stage-label{display:none}.visual-stage img{object-position:center}.cover-copy h1{max-width:680px}.cover-sub{max-width:610px}}
+@media(max-width:580px){main:not(.detail-main){padding-top:96px}.cover-section{min-height:640px}.cover-copy{min-height:640px;padding:35px 23px 29px}.cover-title-wrap{padding-block:25px}.cover-copy h1{font-size:clamp(2.45rem,10.3vw,3.6rem)}.visual-stage::before{inset:13px}}
+
+@media print{main:not(.detail-main){padding-top:0}}

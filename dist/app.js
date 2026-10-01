@@ -102,6 +102,10 @@ function roofIcon() {
   return `<svg class="roof-icon" viewBox="0 0 72 42" aria-hidden="true"><path d="M6 37V17L36 7l30 10v20" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round"/><path d="M4 39h64" fill="none" stroke="currentColor" stroke-width="1" opacity=".32"/></svg>`;
 }
 
+function benefitsList() {
+  return `<ol class="benefits-single-list" role="list">${localizedBenefits.flatMap(group => group.items).map((item, i) => `<li><bdi>${String(i + 1).padStart(2, "0")}</bdi><span>${safe(item)}</span></li>`).join("")}</ol>`;
+}
+
 function catalog() {
   const abstract = isFa ? company.about : ui.about.abstract;
   document.title = isFa ? "سوله بتنی پیش‌ساخته آپتوس | APTUS IRAN" : lang === "tr" ? "APTUS İran | Prefabrik Beton Yapı Kataloğu" : "APTUS Iran | Precast Concrete Shed Catalog";
@@ -110,9 +114,9 @@ function catalog() {
       <div class="cover-copy">
         <!-- <div class="cover-kicker"><span class="orange-line"></span><span>${ui.cover.kicker}</span></div> -->
         <div class="cover-title-wrap"><h1 id="cover-title">${ui.cover.title}</h1></div>
-        <div class="cover-company"><img src="./assets/aptus-logo.jpg" alt="" style="border-radius: 0px;" width="54" height="54"><span><strong>${ui.about.legal}<br>${companyName}</strong></span></div>
         <!-- <a class="cover-scroll" href="${pageLink("about")}">${ui.cover.enter}<span aria-hidden="true">↓</span></a> -->
       </div>
+      <div class="cover-company"><img src="./assets/aptus-logo.jpg" alt="" width="54" height="54"><span><strong>${companyName}</strong><small>${ui.about.legal}</small></span></div>
       <div class="cover-visual"><div class="visual-stage"><img src="./assets/cover-render1.jpg" alt="${ui.cover.visualAlt}"></div></div>
     </section>
 
@@ -150,8 +154,10 @@ function catalog() {
 
     <section id="benefits" class="page-section benefits-section"><div class="section-inner">
       ${sectionHead(8, ui.benefits.title)}
-      <div class="benefits-headline"><p>${ui.benefits.headline}</p><span> </span></div>
-      <div class="benefit-groups">${localizedBenefits.map((group,i) => `<article class="benefit-group-card"><span class="eyebrow">0${i+1} / 03</span><h3>${safe(group.title)}</h3><ol class="faded-list">${group.items.slice(0,4).map(item => `<li>${safe(item)}</li>`).join("")}</ol><a class="card-more" href="${detailLink("benefits")}#group-${i+1}">${extra.more}${arrow()}</a></article>`).join("")}</div>
+      <div class="benefits-window">
+        <div class="benefits-scroll" id="benefits-scroll" role="region" aria-label="${safe(ui.benefits.title)}">${benefitsList()}</div>
+        <button class="benefits-toggle" type="button" aria-expanded="false" aria-controls="benefits-scroll"><span>${extra.benefits.preview}</span><span class="benefits-chevron" aria-hidden="true"></span></button>
+      </div>
     </div></section>
 
   </main>${footer()}`;
@@ -163,7 +169,7 @@ function frameDiagram(h, s) {
    * - Thin orange dimension lines
    * - Closed filled arrowheads
    * - Proper extension lines
-   * - Clear spacing between object and dimensions
+   * - Dimensions inside the frame, matching the supplied sketch
    * - Consistent typography
    */
 
@@ -174,6 +180,9 @@ function frameDiagram(h, s) {
   const bottom = 296;
   const eaves = 190 - (h.module - 3) * 27;
   const peak = eaves - 35;
+  const innerX1 = x1 + 6.5;
+  const innerX2 = x2 - 6.5;
+  const underRoofY = eaves + 6.5;
 
   /* Dimension styling */
   const dimColor = "#f58220";
@@ -187,23 +196,23 @@ function frameDiagram(h, s) {
      HORIZONTAL DIMENSION — CLEAR SPAN
      ----------------------------------------- */
 
-  const horizontalDimY = bottom + 52;
+  const horizontalDimY = bottom - 12;
 
-  const horizontalExtTop = bottom + 4;
-  const horizontalExtBottom = horizontalDimY + 11;
+  const horizontalExtTop = bottom - 4;
+  const horizontalExtBottom = horizontalDimY - 8;
 
   /* -----------------------------------------
      VERTICAL DIMENSION — UNDER ROOF HEIGHT
      ----------------------------------------- */
 
-  const verticalDimX = Math.min(x2 + 50, 700);
+  const verticalDimX = innerX1 + 24;
 
-  const verticalExtEnd = verticalDimX + 10;
+  const verticalExtEnd = verticalDimX + 8;
 
-  const verticalTextX = verticalDimX + 9;
-  const verticalTextY = (bottom + eaves) / 2;
+  const verticalTextX = verticalDimX + 46;
+  const verticalTextY = (bottom + underRoofY) / 2;
 
-  const horizontalLabel = `m ${ n(s.clearCm / 100)}`;
+  const horizontalLabel = `${n(s.clearCm / 100)} m`;
   const verticalLabel = `${n(h.underRoofCm / 100)} m`;
 
   return `
@@ -214,7 +223,8 @@ function frameDiagram(h, s) {
       ui.detail.frameAlt,
       { type: typeName(h.module, s.module) }
     )}"
-    viewBox="0 0 760 420"
+    viewBox="${x1 - 35} ${peak - 35} ${width + 70} ${bottom - peak + 85}"
+    direction="ltr"
     xmlns="http://www.w3.org/2000/svg"
   >
 
@@ -300,10 +310,10 @@ function frameDiagram(h, s) {
 
     <path
       d="
-        M${x1} ${horizontalExtTop}
+        M${innerX1} ${horizontalExtTop}
         V${horizontalExtBottom}
 
-        M${x2} ${horizontalExtTop}
+        M${innerX2} ${horizontalExtTop}
         V${horizontalExtBottom}
       "
       fill="none"
@@ -316,8 +326,8 @@ function frameDiagram(h, s) {
 
     <path
       d="
-        M${x1} ${horizontalDimY}
-        H${x2}
+        M${innerX1} ${horizontalDimY}
+        H${innerX2}
       "
       fill="none"
       stroke="${dimColor}"
@@ -367,10 +377,10 @@ function frameDiagram(h, s) {
 
     <path
       d="
-        M${x2 + 5} ${eaves}
+        M${innerX1 + 3} ${underRoofY}
         H${verticalExtEnd}
 
-        M${x2 + 5} ${bottom}
+        M${innerX1 + 3} ${bottom}
         H${verticalExtEnd}
       "
       fill="none"
@@ -384,7 +394,7 @@ function frameDiagram(h, s) {
     <path
       d="
         M${verticalDimX} ${bottom}
-        V${eaves}
+        V${underRoofY}
       "
       fill="none"
       stroke="${dimColor}"
@@ -433,7 +443,7 @@ function typeDetail(h, s) {
   document.title = `${text(ui.detail.typeTitle,{type})} | APTUS IRAN`;
   return `${header("types")}<main class="detail-main"><div class="detail-container"><nav class="breadcrumbs" aria-label="${ui.detail.catalog}"><a href="${pageLink("cover")}">${ui.detail.catalog}</a><span>›</span><a href="${pageLink("types")}">${ui.types.title}</a><span>›</span><strong dir="ltr">${type}</strong></nav>
     <div class="detail-heading"><div><span class="eyebrow">AIPS / ${String(index+1).padStart(2,"0")}</span><h1>${text(ui.detail.typeTitle,{type:`<bdi dir="ltr">${type}</bdi>`})}</h1><p>${text(ui.detail.typeDescription,{height:n(h.underRoofCm/100),span:n(s.clearCm/100)})}</p></div><a class="outline-button" href="${pageLink("types")}">${ui.detail.backTypes}${arrow("back")}</a></div>
-    <div class="detail-grid"><div class="detail-visual"><div class="drawing-header"><span>${ui.detail.frame}</span><bdi dir="ltr">AIPS / ${h.module}H-${s.module}M</bdi></div>${frameDiagram(h,s)}<div class="drawing-foot">${ui.detail.drawingNote}</div></div><aside class="dimension-panel"><h2>${ui.detail.dimensions}</h2><dl><div><dt>${ui.types.clearSpan}</dt><dd>${n(s.clearCm/100)} <small>${ui.types.meter}</small></dd></div><div><dt>${ui.detail.outside}</dt><dd>${n(s.axesCm/100)} <small>${ui.types.meter}</small></dd></div><div><dt>${ui.types.underRoof}</dt><dd>${n(h.underRoofCm/100)} <small>${ui.types.meter}</small></dd></div><div><dt>${ui.detail.module}</dt><dd>${n(2.4)} <small>${ui.types.meter}</small></dd></div></dl></aside></div>
+    <div class="detail-grid type-detail-grid"><div class="detail-visual"><div class="drawing-header"><span>${ui.detail.frame}</span><bdi dir="ltr">AIPS / ${h.module}H-${s.module}M</bdi></div>${frameDiagram(h,s)}<div class="drawing-foot">${ui.detail.drawingNote}</div></div></div>
     <div class="detail-lower"><div><span class="eyebrow">AIPS / ${type}</span><h2>${ui.detail.notes}</h2><p>${text(ui.detail.p1,{spanCode:`<bdi dir="ltr">${s.module}M</bdi>`,heightCode:`<bdi dir="ltr">${h.module}H</bdi>`})}</p><p>${ui.detail.p2}</p></div><nav class="type-navigation" aria-label="${ui.detail.otherTypes}"><span>${ui.detail.otherTypes}</span><a href="${typeLink(previous[0].module,previous[1].module)}">${arrow("back")}<span>${ui.detail.previous} <bdi dir="ltr">${typeName(previous[0].module,previous[1].module)}</bdi></span></a><a href="${typeLink(next[0].module,next[1].module)}"><span>${ui.detail.next} <bdi dir="ltr">${typeName(next[0].module,next[1].module)}</bdi></span>${arrow()}</a></nav></div>
   </div></main>${footer()}`;
 }
@@ -450,7 +460,7 @@ function partDetail(part) {
 
 function benefitsDetail() {
   document.title = `${extra.benefits.detail} | APTUS IRAN`;
-  return `${header("benefits")}<main class="detail-main"><div class="detail-container"><nav class="breadcrumbs"><a href="${pageLink("cover")}">${ui.detail.catalog}</a><span>›</span><a href="${pageLink("benefits")}">${ui.benefits.title}</a></nav><div class="detail-heading"><div><span class="eyebrow">AIPS / 25</span><h1>${extra.benefits.detail}</h1><p>${extra.benefits.count}</p></div><a class="outline-button" href="${pageLink("benefits")}">${ui.benefits.title}${arrow("back")}</a></div><div class="benefit-detail-groups">${localizedBenefits.map((group,i) => `<section class="benefit-detail-card" id="group-${i+1}"><span class="eyebrow">0${i+1} / 03</span><h2>${safe(group.title)}</h2><ol>${group.items.map((item,j) => `<li><span>${String(j+1).padStart(2,"0")}</span>${safe(item)}</li>`).join("")}</ol></section>`).join("")}</div></div></main>${footer()}`;
+  return `${header("benefits")}<main class="detail-main"><div class="detail-container"><nav class="breadcrumbs"><a href="${pageLink("cover")}">${ui.detail.catalog}</a><span>›</span><a href="${pageLink("benefits")}">${ui.benefits.title}</a></nav><div class="detail-heading"><div><span class="eyebrow">AIPS / 25</span><h1>${extra.benefits.detail}</h1><p>${extra.benefits.count}</p></div><a class="outline-button" href="${pageLink("benefits")}">${ui.benefits.title}${arrow("back")}</a></div><div class="benefits-window benefits-window-full">${benefitsList()}</div></div></main>${footer()}`;
 }
 
 function facadesDetail() {
@@ -475,6 +485,19 @@ function setActivePart(id) {
 }
 
 function bind() {
+  const benefitsToggle = document.querySelector(".benefits-toggle");
+  benefitsToggle?.addEventListener("click", () => {
+    const open = benefitsToggle.getAttribute("aria-expanded") !== "true";
+    const scroll = document.getElementById("benefits-scroll");
+    benefitsToggle.setAttribute("aria-expanded", String(open));
+    benefitsToggle.querySelector("span").textContent = open ? extra.benefits.collapse : extra.benefits.preview;
+    benefitsToggle.closest(".benefits-window").classList.toggle("is-expanded", open);
+    if (open) scroll.setAttribute("tabindex", "0");
+    else {
+      scroll.removeAttribute("tabindex");
+      scroll.scrollTop = 0;
+    }
+  });
   const toggle = document.querySelector(".menu-toggle");
   const menu = document.querySelector(".primary-nav");
   toggle.addEventListener("click", () => {
