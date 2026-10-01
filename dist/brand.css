@@ -77,6 +77,8 @@ body{background:radial-gradient(circle at 100% 8%,#e6e6e688,transparent 28%),rad
 .cover-section::before,.cover-section::after{content:none}
 .cover-copy h1,.cover-company{text-shadow:0 2px 8px #0009,0 1px 2px #000}
 .cover-copy{padding-bottom:145px}
+.cover-title-wrap{transform:translateY(-28px)}
+@media(max-width:580px){.cover-title-wrap{transform:translateY(-16px)}}
 .cover-company{
     position:absolute;
     z-index:2;
