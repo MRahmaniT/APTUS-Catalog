@@ -55,7 +55,7 @@ document.documentElement.dir = isFa ? "rtl" : "ltr";
 if (!isFa) document.querySelector('meta[name="description"]')?.setAttribute("content", ui.cover.sub);
 
 function sectionHead(index, title, aside = "") {
-  return `<div class="section-head"><div><span class="eyebrow"><bdi>${n(index)}</bdi> / AIPS</span><h2>${title}</h2></div>${aside ? `<p class="section-aside">${aside}</p>` : ""}</div>`;
+  return `<div class="section-head"><div><span class="eyebrow"></span><h2>${title}</h2></div>${aside ? `<p class="section-aside">${aside}</p>` : ""}</div>`;
 }
 
 function header(active = "cover") {
@@ -92,9 +92,9 @@ function footer() {
       <div class="footer-about"><div class="footer-brand"><img src="./assets/aptus-logo.jpg" alt="" style="border-radius: 0px; width="50" height="50"><span>${companyName}<small lang="en" dir="ltr">APTUS IRAN</small></span></div><p>${ui.footer.summary}</p></div>
       <div class="footer-column"><h3>${ui.footer.explore}</h3><a href="${pageLink("about")}">${ui.about.title}</a><a href="${pageLink("system")}">${ui.system.title}</a><a href="${pageLink("types")}">${ui.types.title}</a><a href="${pageLink("facades")}">${extra.nav.facades}</a><a href="${pageLink("applications")}">${extra.nav.applications}</a></div>
       <div class="footer-column"><h3>${ui.footer.components}</h3>${footerParts.map(part => `<a href="${partLink(part.id)}">${part.name}</a>`).join("")}<a href="${pageLink("explore")}">${ui.explore.title}</a><a href="${detailLink("benefits")}">${extra.benefits.all}</a></div>
-      <div class="footer-column"><h3>${ui.footer.contact}</h3><span>${company.address || country}</span><span>${company.phone ? `<a dir="ltr" href="tel:${contactPhone}">${company.phone}</a>` : ui.footer.missing}</span><a href="${detailLink("documents")}">${extra.documents.title}</a></div>
+      <div class="footer-column"><h3>${ui.footer.contact}</h3><span>${company.address || country}</span><span>${company.phone ? `<a dir="ltr" href="tel:${contactPhone}">${company.phone}</a>` : ui.footer.missing}</span></div>
     </div>
-    <div class="footer-bottom"><span>© ${new Date().getFullYear()} APTUS. ${ui.footer.rights}</span><a href="${pageLink("cover")}">${ui.footer.back} ↑</a></div>
+    <div class="footer-bottom"><span>© ${new Date().getFullYear()} APTUS ${ui.footer.rights}</span><a href="${pageLink("cover")}">${ui.footer.back} ↑</a></div>
   </footer>`;
 }
 
@@ -123,48 +123,37 @@ function catalog() {
 
     <section id="system" class="page-section system-section"><div class="section-inner">
       ${sectionHead(2, ui.system.title, ui.system.aside)}
-      <div class="system-grid"><div class="system-picture"><img src="./assets/blueprint.jpg" alt="${ui.system.imageAlt}" loading="lazy"><span class="picture-caption">${ui.system.caption}</span></div><div class="system-copy"><p class="lead">${ui.system.lead}</p><p>${ui.system.p1}</p><p>${ui.system.p2}</p><div class="stat-strip"><div><strong>${n(3)}</strong><span>${ui.system.stats[0]}</span></div><div><strong>${n(6)}</strong><span>${ui.system.stats[1]}</span></div><div><strong>${n(2.4)}</strong><span>${ui.system.stats[2]}</span></div></div></div></div>
+      <div class="system-grid"><div class="system-picture"><img src="./assets/facades/facade-02.jpg" alt="${ui.system.imageAlt}" loading="lazy"></div><div class="system-copy"><p>${ui.system.p1}</p><p>${ui.system.p2}</p></div></div></div>
     </div></section>
 
     <section id="types" class="page-section types-section"><div class="section-inner">
       ${sectionHead(3, ui.types.title, ui.types.aside)}
       <div class="types-intro"><p>${ui.types.intro}</p><span class="scroll-hint">${ui.types.scroll}</span></div>
       <div class="table-wrap" tabindex="0" role="region" aria-label="${ui.types.region}"><table class="types-table"><thead><tr><th scope="col" class="row-corner">${ui.types.underRoof}<br><small>${ui.types.clearSpan}</small></th>${spans.map(s => `<th scope="col"><span class="latin-token" dir="ltr">${s.module}M</span><small>${n(s.clearCm/100)} ${ui.types.meter}</small></th>`).join("")}</tr></thead><tbody>${heights.map(h => `<tr><th scope="row"><span class="latin-token" dir="ltr">${h.module}H</span><small>${n(h.underRoofCm/100)} ${ui.types.meter}</small></th>${spans.map(s => `<td><a class="type-cell" href="${typeLink(h.module,s.module)}" aria-label="${text(ui.types.cell,{ type:typeName(h.module,s.module), span:n(s.clearCm/100), height:n(h.underRoofCm/100) })}">${roofIcon()}<strong dir="ltr">${typeName(h.module,s.module)}</strong><span>${ui.types.view} ${arrow()}</span></a></td>`).join("")}</tr>`).join("")}</tbody></table></div>
-      <div class="type-notes">${ui.types.notes.map((note,i) => `<div><span class="note-index">${String(i+1).padStart(2,"0")}</span><p>${note}</p></div>`).join("")}</div>
     </div></section>
 
     <section id="facades" class="page-section facades-section"><div class="section-inner">
       ${sectionHead(4, extra.facades.title, extra.facades.aside)}
       <div class="facade-grid">${facades.slice(0,6).map((item,i) => `<figure class="facade-card"><img src="${item.image}" alt="${text(extra.galleryAlt,{number:n(i+1),name:extra.facades.title})}" loading="lazy"><figcaption>${extra.facades.caption} <bdi>${n(i+1).toString().padStart(2,"0")}</bdi></figcaption></figure>`).join("")}</div>
-      <div class="section-action"><span>${extra.facades.note}</span><a class="solid-button" href="${detailLink("facades")}">${extra.facades.all}${arrow()}</a></div>
-    </div></section>
-
-    <section id="parts" class="page-section parts-section"><div class="section-inner">
-      ${sectionHead(5, ui.parts.title, ui.parts.aside)}
-      <div class="parts-grid">${localizedParts.map((part,i) => `<article class="part-card ${i===0 ? "part-card-lead" : ""}"><a class="part-image" href="${partLink(part.id)}" aria-label="${safe(part.name)}"><img src="${part.image}" alt="${safe(ariaPart(part))}" loading="lazy"></a><div class="part-caption"><span class="part-number">${part.number} / 09</span><h3>${safe(part.name)}</h3><p class="part-role">${safe(part.role)}</p><p class="preview-excerpt">${safe(part.paragraphs?.[0] || part.description)}</p><a class="card-more" href="${partLink(part.id)}">${extra.more}${arrow()}</a></div></article>`).join("")}</div>
+      <div class="section-action"><a class="solid-button" href="${detailLink("facades")}">${extra.facades.all}${arrow()}</a></div>
     </div></section>
 
     <section id="applications" class="page-section applications-section"><div class="section-inner">
       ${sectionHead(6, extra.applications.title, extra.applications.aside)}
       <div class="applications-grid">${localizedApplications.map((item,i) => `<article class="application-card" id="application-${item.id}"><img src="${item.image}" alt="${safe(item.title)}" loading="lazy"><div><span class="eyebrow">${String(i+1).padStart(2,"0")} / 05</span><h3>${safe(item.title)}</h3></div></article>`).join("")}</div>
-      <p class="source-caption">${extra.applications.note}</p>
     </div></section>
 
     <section id="explore" class="page-section explore-section"><div class="section-inner">
       ${sectionHead(7, ui.explore.title, ui.explore.aside)}
-      <div class="explore-layout"><div class="diagram-column"><div class="diagram-board"><div class="board-bar"><span>${ui.explore.diagramTitle}</span><span>01—08</span></div><div class="diagram-canvas"><img src="./assets/assembly.png" alt="${ui.explore.diagramAlt}" loading="lazy">${localizedParts.filter(part => part.pin).map(part => `<button type="button" class="hotspot" data-part="${part.id}" style="left:${part.pin[0]}%;top:${part.pin[1]}%" aria-label="${text(ui.explore.select,{name:part.name})}"><span>${n(Number(part.number))}</span></button>`).join("")}</div><p class="diagram-source">${ui.explore.diagramHelp}</p></div><div class="part-selector" role="group" aria-label="${ui.explore.selectGroup}">${localizedParts.map(part => `<button type="button" data-part="${part.id}"><bdi>${n(Number(part.number))}</bdi> ${safe(part.name)}</button>`).join("")}</div></div><aside class="preview-panel" aria-live="polite" id="part-preview"></aside></div>
+      <div class="explore-layout"><div class="diagram-column"><div class="diagram-board"><div class="board-bar"><span>${ui.explore.diagramTitle}</span><span>01—08</span></div><div class="diagram-canvas"><img src="./assets/semi-assembly.png" alt="${ui.explore.diagramAlt}" loading="lazy">${localizedParts.filter(part => part.pin).map(part => `<button type="button" class="hotspot" data-part="${part.id}" style="left:${part.pin[0]}%;top:${part.pin[1]}%" aria-label="${text(ui.explore.select,{name:part.name})}"><span>${n(Number(part.number))}</span></button>`).join("")}</div><p class="diagram-source">${ui.explore.diagramHelp}</p></div><div class="part-selector" role="group" aria-label="${ui.explore.selectGroup}">${localizedParts.map(part => `<button type="button" data-part="${part.id}"><bdi>${n(Number(part.number))}</bdi> ${safe(part.name)}</button>`).join("")}</div></div><aside class="preview-panel" aria-live="polite" id="part-preview"></aside></div>
     </div></section>
 
     <section id="benefits" class="page-section benefits-section"><div class="section-inner">
       ${sectionHead(8, ui.benefits.title)}
-      <div class="benefits-headline"><p>${ui.benefits.headline}</p><span>${extra.benefits.count}</span></div>
+      <div class="benefits-headline"><p>${ui.benefits.headline}</p><span> </span></div>
       <div class="benefit-groups">${localizedBenefits.map((group,i) => `<article class="benefit-group-card"><span class="eyebrow">0${i+1} / 03</span><h3>${safe(group.title)}</h3><ol class="faded-list">${group.items.slice(0,4).map(item => `<li>${safe(item)}</li>`).join("")}</ol><a class="card-more" href="${detailLink("benefits")}#group-${i+1}">${extra.more}${arrow()}</a></article>`).join("")}</div>
     </div></section>
 
-    <section id="contact" class="page-section contact-section"><div class="section-inner">
-      ${sectionHead(9, ui.contact.title, ui.contact.aside)}
-      <div class="contact-grid"><div class="contact-intro"><span class="contact-word" lang="en" dir="ltr">APTUS<br>IRAN<span>.</span></span><p>${ui.contact.intro}</p></div><div class="contact-items"><div class="contact-row"><span>${ui.contact.location}</span><strong>${company.address || country}</strong>${!company.address ? `<small>${ui.contact.addressMissing}</small>` : ""}</div><div class="contact-row"><span>${ui.contact.phone}</span><strong>${company.phone ? `<a dir="ltr" href="tel:${contactPhone}">${company.phone}</a>` : ui.contact.phoneMissing}</strong></div><div class="contact-row certificates"><span>${extra.documents.title}</span><div class="certificate-links">${localizedDocuments.slice(5,8).map(doc => `<a href="${doc.href}" target="_blank" rel="noopener">${safe(doc.title)} <span aria-hidden="true">↗</span></a>`).join("")}<a class="all-documents" href="${detailLink("documents")}">${extra.documents.all}${arrow()}</a></div></div></div></div>
-    </div></section>
   </main>${footer()}`;
 }
 
