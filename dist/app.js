@@ -86,10 +86,13 @@ function header(active = "cover") {
 
 function footer() {
   return `<footer class="site-footer">
-    <div class="footer-hero"><div><span class="eyebrow">APTUS INDUSTRIAL PRECAST SYSTEM</span><h2>${ui.footer.tagline}</h2></div><strong lang="en" dir="ltr">APTUS<span>.</span></strong></div>
+    <div class="footer-hero"><div><span class="eyebrow">APTUS INDUSTRIAL PRECAST SYSTEM</span><h2>${ui.footer.tagline}</h2></div><strong lang="en" dir="ltr">APTUS</strong></div>
     <div class="footer-grid">
-      <div class="footer-about"><div class="footer-brand"><span>${companyName}<small lang="en" dir="ltr">APTUS IRAN</small></span></div></div>
-      <div class="footer-column"><h3>${ui.footer.contact}</h3><span>${company.address || country}</span><span>${company.phone ? `<a dir="ltr" href="tel:${contactPhone}">${company.phone}</a>` : ui.footer.missing}</span></div>
+      <div class="footer-about"><a class="footer-brand" href="${pageLink("cover")}" aria-label="${ui.homeLabel}"><img src="./assets/aptus-logo.jpg" alt="" width="64" height="64"><span><strong>${companyName}</strong><small lang="en" dir="ltr">APTUS IRAN</small></span></a></div>
+      <div class="footer-contact"><h3>${ui.footer.contact}</h3><div class="footer-contact-items">
+        <div class="footer-contact-item"><svg class="footer-contact-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 10c0 6-8 12-8 12S4 16 4 10a8 8 0 1 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg><div><span class="footer-contact-label">${ui.contact.location}</span><span class="footer-contact-value">${company.address || country}</span></div></div>
+        <div class="footer-contact-item"><svg class="footer-contact-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 3 4 4-2 3a16 16 0 0 0 7 7l3-2 4 4-2 3C11 22 2 13 2 5Z"/></svg><div><span class="footer-contact-label">${ui.contact.phone}</span><span class="footer-contact-value">${company.phone ? `<a dir="ltr" href="tel:${contactPhone}">${company.phone}</a>` : ui.footer.missing}</span></div></div>
+      </div></div>
     </div>
     <div class="footer-bottom"><span>© ${new Date().getFullYear()} APTUS ${ui.footer.rights}</span><a href="${pageLink("cover")}">${ui.footer.back} ↑</a></div>
   </footer>`;
