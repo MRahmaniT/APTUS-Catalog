@@ -85,13 +85,10 @@ function header(active = "cover") {
 }
 
 function footer() {
-  const footerParts = [localizedParts[6], localizedParts[0], localizedParts[2]];
   return `<footer class="site-footer">
     <div class="footer-hero"><div><span class="eyebrow">APTUS INDUSTRIAL PRECAST SYSTEM</span><h2>${ui.footer.tagline}</h2></div><strong lang="en" dir="ltr">APTUS<span>.</span></strong></div>
     <div class="footer-grid">
-      <div class="footer-about"><div class="footer-brand"><img src="./assets/aptus-logo.jpg" alt="" style="border-radius: 0px; width="50" height="50"><span>${companyName}<small lang="en" dir="ltr">APTUS IRAN</small></span></div><p>${ui.footer.summary}</p></div>
-      <div class="footer-column"><h3>${ui.footer.explore}</h3><a href="${pageLink("about")}">${ui.about.title}</a><a href="${pageLink("system")}">${ui.system.title}</a><a href="${pageLink("types")}">${ui.types.title}</a><a href="${pageLink("facades")}">${extra.nav.facades}</a><a href="${pageLink("applications")}">${extra.nav.applications}</a></div>
-      <div class="footer-column"><h3>${ui.footer.components}</h3>${footerParts.map(part => `<a href="${partLink(part.id)}">${part.name}</a>`).join("")}<a href="${pageLink("explore")}">${ui.explore.title}</a><a href="${detailLink("benefits")}">${extra.benefits.all}</a></div>
+      <div class="footer-about"><div class="footer-brand"><span>${companyName}<small lang="en" dir="ltr">APTUS IRAN</small></span></div></div>
       <div class="footer-column"><h3>${ui.footer.contact}</h3><span>${company.address || country}</span><span>${company.phone ? `<a dir="ltr" href="tel:${contactPhone}">${company.phone}</a>` : ui.footer.missing}</span></div>
     </div>
     <div class="footer-bottom"><span>© ${new Date().getFullYear()} APTUS ${ui.footer.rights}</span><a href="${pageLink("cover")}">${ui.footer.back} ↑</a></div>
