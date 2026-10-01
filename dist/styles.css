@@ -1,5 +1,5 @@
-@font-face{font-family:"Noto Arabic";src:url("./assets/fonts/NotoSansArabic-Regular.ttf") format("truetype");font-style:normal;font-weight:400;font-display:swap}
-@font-face{font-family:"Noto Arabic";src:url("./assets/fonts/NotoSansArabic-Bold.ttf") format("truetype");font-style:normal;font-weight:700;font-display:swap}
+@font-face{font-family:"Noto Arabic";src:url("./assets/fonts/IRANSans-web.woff") format("woff");font-style:normal;font-weight:400;font-display:swap}
+@font-face{font-family:"Noto Arabic";src:url("./assets/fonts/IRANSans-web.woff") format("truetype");font-style:normal;font-weight:700;font-display:swap}
 :root{--ink:#333333;--ink-2:#58595b;--orange:#f58220;--cream:#ffffff;--mist:#ffffff;--line:#e6e6e6;--text:#58595b;--muted:#666666;--white:#ffffff;--max:1380px;scroll-behavior:smooth}
 *{box-sizing:border-box}
 html{scroll-padding-top:80px}

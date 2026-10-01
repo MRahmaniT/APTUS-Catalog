@@ -16,7 +16,7 @@ try {
 const ui = copy[lang];
 const extra = editorialUI[lang];
 const isFa = lang === "fa";
-const number = new Intl.NumberFormat(lang === "fa" ? "fa-IR" : lang === "tr" ? "tr-TR" : "en-US", { maximumFractionDigits: 1 });
+const number = new Intl.NumberFormat(lang === "fa" ? "en-US" : lang === "tr" ? "tr-TR" : "en-US", { maximumFractionDigits: 1 });
 const n = value => number.format(value);
 const text = (template, values = {}) => Object.entries(values).reduce((result, [key, value]) => result.replaceAll(`{${key}}`, String(value)), template);
 const faPartRoles = {
@@ -44,7 +44,7 @@ const pageLink = id => `./index.html${isFa ? "" : `?lang=${lang}`}#${id}`;
 const typeLink = (h, s) => `./index.html?type=${h}H-${s}M${isFa ? "" : `&lang=${lang}`}`;
 const partLink = id => `./index.html?part=${id}${isFa ? "" : `&lang=${lang}`}`;
 const detailLink = (key, value = "all") => `./index.html?${key}=${encodeURIComponent(value)}${isFa ? "" : `&lang=${lang}`}`;
-const typeName = (h, s) => `${h}H × ${s}M`;
+const typeName = (h, s) => `${s}M × ${h}H`;
 const contactPhone = company.phone ? String(company.phone).replace(/[^+\d]/g, "") : "";
 const ariaPart = part => text(ui.parts.imageAlt, { name: part.name });
 const arrow = kind => `<svg class="directional-arrow ${kind === "back" ? "is-back" : ""}" viewBox="0 0 24 24" fill="none" aria-hidden="true" focusable="false"><path d="M4 12h15m-6-6 6 6-6 6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>`;
@@ -214,7 +214,7 @@ function frameDiagram(h, s) {
   const verticalTextX = verticalDimX + 9;
   const verticalTextY = (bottom + eaves) / 2;
 
-  const horizontalLabel = `${n(s.clearCm / 100)} m`;
+  const horizontalLabel = `m ${ n(s.clearCm / 100)}`;
   const verticalLabel = `${n(h.underRoofCm / 100)} m`;
 
   return `
