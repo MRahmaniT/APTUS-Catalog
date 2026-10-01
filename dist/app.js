@@ -128,7 +128,7 @@ function catalog() {
 
     <section id="types" class="page-section types-section"><div class="section-inner">
       ${sectionHead(3, ui.types.title, ui.types.aside)}
-      <div class="types-intro"><p>${ui.types.intro}</p><span class="scroll-hint">${ui.types.scroll}</span></div>
+      <div class="types-intro"><p>${ui.types.intro}</div>
       <div class="table-wrap" tabindex="0" role="region" aria-label="${ui.types.region}"><table class="types-table"><thead><tr><th scope="col" class="row-corner">${ui.types.underRoof}<br><small>${ui.types.clearSpan}</small></th>${spans.map(s => `<th scope="col"><span class="latin-token" dir="ltr">${s.module}M</span><small>${n(s.clearCm/100)} ${ui.types.meter}</small></th>`).join("")}</tr></thead><tbody>${heights.map(h => `<tr><th scope="row"><span class="latin-token" dir="ltr">${h.module}H</span><small>${n(h.underRoofCm/100)} ${ui.types.meter}</small></th>${spans.map(s => `<td><a class="type-cell" href="${typeLink(h.module,s.module)}" aria-label="${text(ui.types.cell,{ type:typeName(h.module,s.module), span:n(s.clearCm/100), height:n(h.underRoofCm/100) })}">${roofIcon()}<strong dir="ltr">${typeName(h.module,s.module)}</strong><span>${ui.types.view} ${arrow()}</span></a></td>`).join("")}</tr>`).join("")}</tbody></table></div>
     </div></section>
 
