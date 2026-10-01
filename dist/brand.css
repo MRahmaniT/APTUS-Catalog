@@ -262,6 +262,69 @@ html[dir=rtl]
     filter:brightness(1.06)}
 .solid-button,
 .directional-arrow{color:#333}
+.benefits-window{
+    padding:28px 32px;
+    border:1px solid #e6e6e6;
+    border-radius:29px;
+    background:#fff;
+    box-shadow:var(--glass-shadow)}
+.benefits-scroll{
+    max-height:12rem;
+    overflow:hidden;
+    mask-image:linear-gradient(to bottom,#000 55%,transparent 100%);
+    -webkit-mask-image:linear-gradient(to bottom,#000 55%,transparent 100%)}
+.benefits-window.is-expanded .benefits-scroll{
+    max-height:min(32rem,65vh);
+    overflow-y:auto;
+    overscroll-behavior:contain;
+    scrollbar-color:#f58220 #e6e6e6;
+    scrollbar-width:thin;
+    mask-image:none;
+    -webkit-mask-image:none}
+.benefits-single-list{
+    margin:0;
+    padding:0;
+    list-style:none}
+.benefits-single-list li{
+    display:grid;
+    grid-template-columns:2.25rem minmax(0,1fr);
+    gap:12px;
+    padding:18px 8px;
+    border-bottom:1px solid #e6e6e6;
+    color:#333;
+    line-height:1.9}
+.benefits-single-list li bdi{
+    color:#f58220;
+    font:700 .85rem/2 Arial,sans-serif}
+.benefits-toggle{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    gap:16px;
+    width:100%;
+    margin-top:20px;
+    padding:18px 8px 4px;
+    border:0;
+    border-top:1px solid #e6e6e6;
+    background:transparent;
+    color:#333;
+    font:inherit;
+    cursor:pointer}
+.benefits-chevron{
+    width:10px;
+    height:10px;
+    margin:4px;
+    border-inline-end:2px solid #f58220;
+    border-bottom:2px solid #f58220;
+    transform:rotate(45deg)}
+html[dir=rtl] .benefits-chevron{transform:rotate(-45deg)}
+.is-expanded .benefits-chevron{transform:rotate(225deg)}
+html[dir=rtl] .is-expanded .benefits-chevron{transform:rotate(135deg)}
+.benefits-toggle:focus-visible,.benefits-scroll:focus-visible{
+    outline:2px solid #f58220;
+    outline-offset:4px}
+@media(max-width:580px){.benefits-window{padding:18px;border-radius:23px}.benefits-single-list li{grid-template-columns:1.6rem minmax(0,1fr);gap:8px;padding:14px 0;font-size:.9rem}}
+@media print{.benefits-scroll,.benefits-window.is-expanded .benefits-scroll{max-height:none;overflow:visible;mask-image:none;-webkit-mask-image:none}.benefits-toggle{display:none}}
 .benefit-groups{
     display:grid;
     grid-template-columns:repeat(3,minmax(0,1fr));

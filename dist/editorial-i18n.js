@@ -5,7 +5,7 @@ export const editorialUI = {
     more: "اطلاعات بیشتر", fullText: "متن کامل و تصاویر قطعه", sourcePdf: "فایل فنی اصلی", gallery: "نماهای بیشتر", galleryAlt: "نمای شماره {number} از {name}",
     facades: { title: "نماسازی با ساندویچ پنل", aside: "طرح‌های ارائه‌شده برای جداره بتنی و پوشش ساندویچ‌پنل", caption: "نمونه طرح", all: "مشاهده همه طرح‌ها" },
     applications: { title: "پنج نمونه از کاربری‌های سوله پیش‌ساخته بتنی", note: "تصاویر، نمونه‌های تصویری کاربری هستند و الزاماً پروژه اجراشده آپتوس را نشان نمی‌دهند." },
-    benefits: { all: "همه مزایا", detail: "فهرست کامل مزایای سیستم سوله بتنی پیش‌ساخته سریع‌الاحداث آپتوس", count: "۲۵ موضوع در سه گروه", preview: "مشاهده جزئیات مزایا" },
+    benefits: { all: "همه مزایا", detail: "فهرست کامل مزایای سیستم سوله بتنی پیش‌ساخته سریع‌الاحداث آپتوس", count: "۲۵ مزیت", preview: "مشاهده همه مزایا", collapse: "بستن فهرست" },
     documents: { all: "همه مدارک", title: "مدارک و گواهی‌نامه‌ها", view: "مشاهده فایل", preview: "مدارک ارائه‌شده" },
     part: { preview: "خلاصه قطعه", details: "شرح فنی قطعه", source: "نسخه اصلی سند فنی", additional: "تصاویر تکمیلی", total: "جزء {number} از ۹", corner: "قطعه تکمیلی جداره؛ جایگاه آن در شماتیک هشت‌نقطه‌ای مشخص نشده است." }
   },
@@ -14,7 +14,7 @@ export const editorialUI = {
     more: "Learn more", fullText: "Full description and images", sourcePdf: "Original technical PDF", gallery: "More views", galleryAlt: "View {number} of {name}",
     facades: { title: "Facade concepts", aside: "Supplied concepts for concrete perimeter walls and sandwich-panel cladding", caption: "Concept", all: "See every concept", note: "Facade concepts supplied in the APTUS archive." },
     applications: { title: "Possible applications", aside: "Five application categories in the supplied materials", note: "Images illustrate potential uses and do not necessarily show completed APTUS projects." },
-    benefits: { all: "All advantages", detail: "Complete list of system advantages", count: "25 topics in three groups", preview: "Explore all advantages" },
+    benefits: { all: "All advantages", detail: "Complete list of system advantages", count: "25 advantages", preview: "Explore all advantages", collapse: "Collapse list" },
     documents: { all: "All documents", title: "Certificates and documents", intro: "Documents supplied for APTUS. Please check each original file for its date and current status.", view: "Open file", preview: "Supplied documents" },
     part: { preview: "Component preview", details: "Technical description", source: "Original technical document", additional: "Additional images", total: "Component {number} of 9", corner: "Additional perimeter component; it has no numbered point on the eight-point assembly diagram." }
   },
@@ -23,7 +23,7 @@ export const editorialUI = {
     more: "Daha fazla bilgi", fullText: "Tam açıklama ve görseller", sourcePdf: "Özgün teknik PDF", gallery: "Diğer görseller", galleryAlt: "{name} için {number} numaralı görünüm",
     facades: { title: "Cephe fikirleri", aside: "Beton çevre duvarı ve sandviç panel kaplamaya yönelik sunulan tasarımlar", caption: "Tasarım", all: "Tüm tasarımlar", note: "APTUS arşivinde sağlanan cephe tasarımları." },
     applications: { title: "Olası kullanım alanları", aside: "Sağlanan materyallerde yer alan beş kullanım kategorisi", note: "Görseller olası kullanımları gösterir; APTUS tarafından tamamlanmış projeleri göstermeleri gerekmez." },
-    benefits: { all: "Tüm avantajlar", detail: "Sistem avantajlarının tam listesi", count: "Üç grupta 25 konu", preview: "Tüm avantajları incele" },
+    benefits: { all: "Tüm avantajlar", detail: "Sistem avantajlarının tam listesi", count: "25 avantaj", preview: "Tüm avantajları incele", collapse: "Listeyi kapat" },
     documents: { all: "Tüm belgeler", title: "Sertifikalar ve belgeler", intro: "APTUS için sağlanan belgeler. Tarih ve güncel durumu özgün dosyadan kontrol edin.", view: "Dosyayı aç", preview: "Sağlanan belgeler" },
     part: { preview: "Bileşen özeti", details: "Teknik açıklama", source: "Özgün teknik belge", additional: "Ek görseller", total: "9 bileşenden {number}.", corner: "Ek çevre duvarı bileşeni; sekiz noktalı montaj şemasında işaretli değildir." }
   }

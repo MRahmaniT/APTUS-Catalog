@@ -102,6 +102,10 @@ function roofIcon() {
   return `<svg class="roof-icon" viewBox="0 0 72 42" aria-hidden="true"><path d="M6 37V17L36 7l30 10v20" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round"/><path d="M4 39h64" fill="none" stroke="currentColor" stroke-width="1" opacity=".32"/></svg>`;
 }
 
+function benefitsList() {
+  return `<ol class="benefits-single-list" role="list">${localizedBenefits.flatMap(group => group.items).map((item, i) => `<li><bdi>${String(i + 1).padStart(2, "0")}</bdi><span>${safe(item)}</span></li>`).join("")}</ol>`;
+}
+
 function catalog() {
   const abstract = isFa ? company.about : ui.about.abstract;
   document.title = isFa ? "سوله بتنی پیش‌ساخته آپتوس | APTUS IRAN" : lang === "tr" ? "APTUS İran | Prefabrik Beton Yapı Kataloğu" : "APTUS Iran | Precast Concrete Shed Catalog";
@@ -150,8 +154,10 @@ function catalog() {
 
     <section id="benefits" class="page-section benefits-section"><div class="section-inner">
       ${sectionHead(8, ui.benefits.title)}
-      <div class="benefits-headline"><p>${ui.benefits.headline}</p><span> </span></div>
-      <div class="benefit-groups">${localizedBenefits.map((group,i) => `<article class="benefit-group-card"><span class="eyebrow">0${i+1} / 03</span><h3>${safe(group.title)}</h3><ol class="faded-list">${group.items.slice(0,4).map(item => `<li>${safe(item)}</li>`).join("")}</ol><a class="card-more" href="${detailLink("benefits")}#group-${i+1}">${extra.more}${arrow()}</a></article>`).join("")}</div>
+      <div class="benefits-window">
+        <div class="benefits-scroll" id="benefits-scroll" role="region" aria-label="${safe(ui.benefits.title)}">${benefitsList()}</div>
+        <button class="benefits-toggle" type="button" aria-expanded="false" aria-controls="benefits-scroll"><span>${extra.benefits.preview}</span><span class="benefits-chevron" aria-hidden="true"></span></button>
+      </div>
     </div></section>
 
   </main>${footer()}`;
@@ -450,7 +456,7 @@ function partDetail(part) {
 
 function benefitsDetail() {
   document.title = `${extra.benefits.detail} | APTUS IRAN`;
-  return `${header("benefits")}<main class="detail-main"><div class="detail-container"><nav class="breadcrumbs"><a href="${pageLink("cover")}">${ui.detail.catalog}</a><span>›</span><a href="${pageLink("benefits")}">${ui.benefits.title}</a></nav><div class="detail-heading"><div><span class="eyebrow">AIPS / 25</span><h1>${extra.benefits.detail}</h1><p>${extra.benefits.count}</p></div><a class="outline-button" href="${pageLink("benefits")}">${ui.benefits.title}${arrow("back")}</a></div><div class="benefit-detail-groups">${localizedBenefits.map((group,i) => `<section class="benefit-detail-card" id="group-${i+1}"><span class="eyebrow">0${i+1} / 03</span><h2>${safe(group.title)}</h2><ol>${group.items.map((item,j) => `<li><span>${String(j+1).padStart(2,"0")}</span>${safe(item)}</li>`).join("")}</ol></section>`).join("")}</div></div></main>${footer()}`;
+  return `${header("benefits")}<main class="detail-main"><div class="detail-container"><nav class="breadcrumbs"><a href="${pageLink("cover")}">${ui.detail.catalog}</a><span>›</span><a href="${pageLink("benefits")}">${ui.benefits.title}</a></nav><div class="detail-heading"><div><span class="eyebrow">AIPS / 25</span><h1>${extra.benefits.detail}</h1><p>${extra.benefits.count}</p></div><a class="outline-button" href="${pageLink("benefits")}">${ui.benefits.title}${arrow("back")}</a></div><div class="benefits-window benefits-window-full">${benefitsList()}</div></div></main>${footer()}`;
 }
 
 function facadesDetail() {
@@ -475,6 +481,19 @@ function setActivePart(id) {
 }
 
 function bind() {
+  const benefitsToggle = document.querySelector(".benefits-toggle");
+  benefitsToggle?.addEventListener("click", () => {
+    const open = benefitsToggle.getAttribute("aria-expanded") !== "true";
+    const scroll = document.getElementById("benefits-scroll");
+    benefitsToggle.setAttribute("aria-expanded", String(open));
+    benefitsToggle.querySelector("span").textContent = open ? extra.benefits.collapse : extra.benefits.preview;
+    benefitsToggle.closest(".benefits-window").classList.toggle("is-expanded", open);
+    if (open) scroll.setAttribute("tabindex", "0");
+    else {
+      scroll.removeAttribute("tabindex");
+      scroll.scrollTop = 0;
+    }
+  });
   const toggle = document.querySelector(".menu-toggle");
   const menu = document.querySelector(".primary-nav");
   toggle.addEventListener("click", () => {
