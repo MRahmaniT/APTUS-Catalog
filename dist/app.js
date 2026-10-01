@@ -114,9 +114,9 @@ function catalog() {
       <div class="cover-copy">
         <!-- <div class="cover-kicker"><span class="orange-line"></span><span>${ui.cover.kicker}</span></div> -->
         <div class="cover-title-wrap"><h1 id="cover-title">${ui.cover.title}</h1></div>
-        <div class="cover-company"><img src="./assets/aptus-logo.jpg" alt="" style="border-radius: 0px;" width="54" height="54"><span><strong>${ui.about.legal}<br>${companyName}</strong></span></div>
         <!-- <a class="cover-scroll" href="${pageLink("about")}">${ui.cover.enter}<span aria-hidden="true">↓</span></a> -->
       </div>
+      <div class="cover-company"><img src="./assets/aptus-logo.jpg" alt="" width="54" height="54"><span><strong>${companyName}</strong><small>${ui.about.legal}</small></span></div>
       <div class="cover-visual"><div class="visual-stage"><img src="./assets/cover-render1.jpg" alt="${ui.cover.visualAlt}"></div></div>
     </section>
 
