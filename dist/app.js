@@ -62,8 +62,8 @@ function header(active = "cover") {
   const submenu = (id, label, entries) => `<details class="nav-group ${active === id ? "is-active" : ""}"><summary>${label}<span class="nav-chevron" aria-hidden="true"></span></summary><div class="nav-submenu">${entries.map(([href, name]) => `<a href="${href}">${name}</a>`).join("")}</div></details>`;
   return `<header class="site-header" id="top">
     <a class="brand" href="${pageLink("cover")}" aria-label="${ui.homeLabel}">
-      <img src="./assets/aptus-logo.jpg" alt="" style="border-radius: 0px; width="43" height="43">
-      <span class="brand-copy"><strong>${companyName}</strong><small lang="en" dir="ltr">APTUS IRAN</small></span>
+      <img src="./assets/aptus-brand.png" alt="" style="border-radius: 0px; width="43" height="43">
+      <!--<span class="brand-copy"><strong>${companyName}</strong><small lang="en" dir="ltr">APTUS IRAN</small></span> -->
     </a>
     <nav class="primary-nav" id="primary-nav" aria-label="${ui.menu}">
       <a href="${pageLink("cover")}" ${active === "cover" ? 'aria-current="page"' : ""}>${extra.nav.home}</a>
@@ -76,9 +76,9 @@ function header(active = "cover") {
       ${submenu("contact", extra.nav.contact, [[pageLink("contact"), extra.nav.contactInfo], [detailLink("documents"), extra.nav.documents]])}
     </nav>
     <div class="header-actions">
-      <div class="language-switch" role="group" aria-label="${ui.language}">
+      <!-- <div class="language-switch" role="group" aria-label="${ui.language}">
         ${[["fa", "فا"], ["en", "EN"], ["tr", "TR"]].map(([code, label]) => `<button type="button" data-lang="${code}" lang="${code}" aria-pressed="${lang === code}">${label}</button>`).join("")}
-      </div>
+      </div> -->
       <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="primary-nav" aria-label="${ui.openMenu}"><span aria-hidden="true">☰</span></button>
     </div>
   </header>`;
@@ -88,7 +88,15 @@ function footer() {
   return `<footer class="site-footer">
     <div class="footer-hero"><div><span class="eyebrow">APTUS INDUSTRIAL PRECAST SYSTEM</span><h2>${ui.footer.tagline}</h2></div><strong lang="en" dir="ltr">APTUS</strong></div>
     <div class="footer-grid">
-      <div class="footer-about"><a class="footer-brand" href="${pageLink("cover")}" aria-label="${ui.homeLabel}"><img src="./assets/aptus-logo.jpg" alt="" width="64" height="64"><span><strong>${companyName}</strong><small lang="en" dir="ltr">APTUS IRAN</small></span></a></div>
+      <div class="footer-about">
+        <a class="footer-brand" href="${pageLink("cover")}" aria-label="${ui.homeLabel}">
+          <img src="./assets/aptus-brand.png" alt="">
+          <!-- <span>
+            <strong>${companyName}</strong>
+            <small lang="en" dir="ltr">APTUS IRAN</small>
+          </span> -->
+        </a>
+      </div>
       <div class="footer-contact"><h3>${ui.footer.contact}</h3><div class="footer-contact-items">
         <div class="footer-contact-item"><svg class="footer-contact-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 10c0 6-8 12-8 12S4 16 4 10a8 8 0 1 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg><div><span class="footer-contact-label">${ui.contact.location}</span><span class="footer-contact-value">${company.address || country}</span></div></div>
         <div class="footer-contact-item"><svg class="footer-contact-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 3 4 4-2 3a16 16 0 0 0 7 7l3-2 4 4-2 3C11 22 2 13 2 5Z"/></svg><div><span class="footer-contact-label">${ui.contact.phone}</span><span class="footer-contact-value">${company.phone ? `<a dir="ltr" href="tel:${contactPhone}">${company.phone}</a>` : ui.footer.missing}</span></div></div>
@@ -129,6 +137,11 @@ function catalog() {
       ${sectionHead(2, ui.system.title, ui.system.aside)}
       <div class="system-grid"><div class="system-picture"><img src="./assets/facades/facade-02.jpg" alt="${ui.system.imageAlt}" loading="lazy"></div><div class="system-copy"><p>${ui.system.p1}</p><p>${ui.system.p2}</p></div></div></div>
     </div></section>
+    
+    <section id="explore" class="page-section explore-section"><div class="section-inner">
+      ${sectionHead(7, ui.explore.title, ui.explore.aside)}
+      <div class="explore-layout"><div class="diagram-column"><div class="diagram-board"><div class="board-bar"><span>${ui.explore.diagramTitle}</span><span>01—08</span></div><div class="diagram-canvas"><img src="./assets/semi-assembly.png" alt="${ui.explore.diagramAlt}" loading="lazy">${localizedParts.filter(part => part.pin).map(part => `<button type="button" class="hotspot" data-part="${part.id}" style="left:${part.pin[0]}%;top:${part.pin[1]}%" aria-label="${text(ui.explore.select,{name:part.name})}"><span>${n(Number(part.number))}</span></button>`).join("")}</div><p class="diagram-source">${ui.explore.diagramHelp}</p></div><div class="part-selector" role="group" aria-label="${ui.explore.selectGroup}">${localizedParts.map(part => `<button type="button" data-part="${part.id}"><bdi>${n(Number(part.number))}</bdi> ${safe(part.name)}</button>`).join("")}</div></div><aside class="preview-panel" aria-live="polite" id="part-preview"></aside></div>
+    </div></section>
 
     <section id="types" class="page-section types-section"><div class="section-inner">
       ${sectionHead(3, ui.types.title, ui.types.aside)}
@@ -145,11 +158,6 @@ function catalog() {
     <section id="applications" class="page-section applications-section"><div class="section-inner">
       ${sectionHead(6, extra.applications.title, extra.applications.aside)}
       <div class="applications-grid">${localizedApplications.map((item,i) => `<article class="application-card" id="application-${item.id}"><img src="${item.image}" alt="${safe(item.title)}" loading="lazy"><div><span class="eyebrow">${String(i+1).padStart(2,"0")} / 05</span><h3>${safe(item.title)}</h3></div></article>`).join("")}</div>
-    </div></section>
-
-    <section id="explore" class="page-section explore-section"><div class="section-inner">
-      ${sectionHead(7, ui.explore.title, ui.explore.aside)}
-      <div class="explore-layout"><div class="diagram-column"><div class="diagram-board"><div class="board-bar"><span>${ui.explore.diagramTitle}</span><span>01—08</span></div><div class="diagram-canvas"><img src="./assets/semi-assembly.png" alt="${ui.explore.diagramAlt}" loading="lazy">${localizedParts.filter(part => part.pin).map(part => `<button type="button" class="hotspot" data-part="${part.id}" style="left:${part.pin[0]}%;top:${part.pin[1]}%" aria-label="${text(ui.explore.select,{name:part.name})}"><span>${n(Number(part.number))}</span></button>`).join("")}</div><p class="diagram-source">${ui.explore.diagramHelp}</p></div><div class="part-selector" role="group" aria-label="${ui.explore.selectGroup}">${localizedParts.map(part => `<button type="button" data-part="${part.id}"><bdi>${n(Number(part.number))}</bdi> ${safe(part.name)}</button>`).join("")}</div></div><aside class="preview-panel" aria-live="polite" id="part-preview"></aside></div>
     </div></section>
 
     <section id="benefits" class="page-section benefits-section"><div class="section-inner">
