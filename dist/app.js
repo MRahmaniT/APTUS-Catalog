@@ -169,7 +169,7 @@ function frameDiagram(h, s) {
    * - Thin orange dimension lines
    * - Closed filled arrowheads
    * - Proper extension lines
-   * - Clear spacing between object and dimensions
+   * - Dimensions inside the frame, matching the supplied sketch
    * - Consistent typography
    */
 
@@ -180,6 +180,9 @@ function frameDiagram(h, s) {
   const bottom = 296;
   const eaves = 190 - (h.module - 3) * 27;
   const peak = eaves - 35;
+  const innerX1 = x1 + 6.5;
+  const innerX2 = x2 - 6.5;
+  const underRoofY = eaves + 6.5;
 
   /* Dimension styling */
   const dimColor = "#f58220";
@@ -193,23 +196,23 @@ function frameDiagram(h, s) {
      HORIZONTAL DIMENSION — CLEAR SPAN
      ----------------------------------------- */
 
-  const horizontalDimY = bottom + 52;
+  const horizontalDimY = bottom - 12;
 
-  const horizontalExtTop = bottom + 4;
-  const horizontalExtBottom = horizontalDimY + 11;
+  const horizontalExtTop = bottom - 4;
+  const horizontalExtBottom = horizontalDimY - 8;
 
   /* -----------------------------------------
      VERTICAL DIMENSION — UNDER ROOF HEIGHT
      ----------------------------------------- */
 
-  const verticalDimX = Math.min(x2 + 50, 700);
+  const verticalDimX = innerX1 + 24;
 
-  const verticalExtEnd = verticalDimX + 10;
+  const verticalExtEnd = verticalDimX + 8;
 
-  const verticalTextX = verticalDimX + 9;
-  const verticalTextY = (bottom + eaves) / 2;
+  const verticalTextX = verticalDimX + 46;
+  const verticalTextY = (bottom + underRoofY) / 2;
 
-  const horizontalLabel = `m ${ n(s.clearCm / 100)}`;
+  const horizontalLabel = `${n(s.clearCm / 100)} m`;
   const verticalLabel = `${n(h.underRoofCm / 100)} m`;
 
   return `
@@ -221,6 +224,7 @@ function frameDiagram(h, s) {
       { type: typeName(h.module, s.module) }
     )}"
     viewBox="0 0 760 420"
+    direction="ltr"
     xmlns="http://www.w3.org/2000/svg"
   >
 
@@ -306,10 +310,10 @@ function frameDiagram(h, s) {
 
     <path
       d="
-        M${x1} ${horizontalExtTop}
+        M${innerX1} ${horizontalExtTop}
         V${horizontalExtBottom}
 
-        M${x2} ${horizontalExtTop}
+        M${innerX2} ${horizontalExtTop}
         V${horizontalExtBottom}
       "
       fill="none"
@@ -322,8 +326,8 @@ function frameDiagram(h, s) {
 
     <path
       d="
-        M${x1} ${horizontalDimY}
-        H${x2}
+        M${innerX1} ${horizontalDimY}
+        H${innerX2}
       "
       fill="none"
       stroke="${dimColor}"
@@ -373,10 +377,10 @@ function frameDiagram(h, s) {
 
     <path
       d="
-        M${x2 + 5} ${eaves}
+        M${innerX1 + 3} ${underRoofY}
         H${verticalExtEnd}
 
-        M${x2 + 5} ${bottom}
+        M${innerX1 + 3} ${bottom}
         H${verticalExtEnd}
       "
       fill="none"
@@ -390,7 +394,7 @@ function frameDiagram(h, s) {
     <path
       d="
         M${verticalDimX} ${bottom}
-        V${eaves}
+        V${underRoofY}
       "
       fill="none"
       stroke="${dimColor}"
