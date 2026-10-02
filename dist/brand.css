@@ -411,7 +411,7 @@ html[dir=rtl] .is-expanded .benefits-chevron{transform:rotate(135deg)}
     min-height:190px;
     padding:34px 48px;
     gap:32px;
-    background:linear-gradient(115deg,#333333f5,#58595bea),url("./assets/blueprint.jpg") center 45%/cover}
+    background:linear-gradient(115deg,#333333f5,#58595bea),url("./assets/blue.png") center 45%/cover}
 .footer-hero .eyebrow{color:#f58220;font-size:.7rem;letter-spacing:.14em}
 .footer-hero h2{font-size:clamp(3.6rem,2.5vw,4.5rem);margin:12px 0 0}
 .footer-hero>strong{
