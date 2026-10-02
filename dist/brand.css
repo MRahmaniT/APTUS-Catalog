@@ -157,8 +157,8 @@ body{background:radial-gradient(circle at 100% 8%,#e6e6e688,transparent 28%),rad
     color:#58595b;
     font-size:.82rem;
     font-weight:700}
-.facade-grid-full,
 .facade-card img{height:295px}
+.facade-grid-full .facade-card img{height:295px}
 .section-action{
     display:flex;
     align-items:center;
@@ -413,7 +413,7 @@ html[dir=rtl] .is-expanded .benefits-chevron{transform:rotate(135deg)}
     gap:32px;
     background:linear-gradient(115deg,#333333f5,#58595bea),url("./assets/blueprint.jpg") center 45%/cover}
 .footer-hero .eyebrow{color:#f58220;font-size:.7rem;letter-spacing:.14em}
-.footer-hero h2{font-size:clamp(1.6rem,2.5vw,2.5rem);margin:12px 0 0}
+.footer-hero h2{font-size:clamp(3.6rem,2.5vw,4.5rem);margin:12px 0 0}
 .footer-hero>strong{
     font-size:clamp(3.8rem,7vw,7rem);
     letter-spacing:-.06em;

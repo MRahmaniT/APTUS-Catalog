@@ -75,7 +75,7 @@ function header(active = "cover") {
       ${submenu("parts", extra.nav.parts, [[pageLink("parts"), extra.nav.overview], [pageLink("explore"), extra.nav.interactive], ...localizedParts.map(part => [partLink(part.id), part.name])])}
       ${submenu("applications", extra.nav.applications, [[pageLink("applications"), extra.nav.applications], ...localizedApplications.map(item => [pageLink(`application-${item.id}`), item.title])])}
       <a href="${pageLink("benefits")}" ${active === "benefits" ? 'aria-current="page"' : ""}>${extra.nav.benefits}</a>
-      ${submenu("contact", extra.nav.contact, [[pageLink("contact"), extra.nav.contactInfo], [detailLink("documents"), extra.nav.documents]])}
+      <a href="${pageLink("contact")}" ${active === "contact" ? 'aria-current="page"' : ""}>${extra.nav.contactInfo}</a>
     </nav>
     <div class="header-actions">
       <!-- <div class="language-switch" role="group" aria-label="${ui.language}">
@@ -87,7 +87,7 @@ function header(active = "cover") {
 }
 
 function footer() {
-  return `<footer class="site-footer">
+  return `<footer class="site-footer" id="contact">
     <div class="footer-hero"><div><!-- <span class="eyebrow">APTUS INDUSTRIAL PRECAST SYSTEM</span> --><h2>${ui.footer.tagline}</h2></div><!-- <strong lang="en" dir="ltr">APTUS</strong> --></div>
     <div class="footer-grid">
       <div class="footer-about">
@@ -174,7 +174,7 @@ function catalog() {
         <div class="cover-title-wrap"><div class="cover-glass"><!-- <span class="cover-glass-kicker">${ui.cover.kicker}</span> --><h1 id="cover-title">${ui.cover.title}</h1><!-- <span class="cover-glass-rule" aria-hidden="true"></span><p class="cover-glass-sub">${ui.cover.sub}</p> --></div></div>
         <!-- <a class="cover-scroll" href="${pageLink("about")}">${ui.cover.enter}<span aria-hidden="true">↓</span></a> -->
       </div>
-      <div class="cover-company"><svg class="brand-logo" viewBox="0 0 1680 496" role="img" aria-label="آپتوس ایران" xmlns="http://www.w3.org/2000/svg"><path fill="#676767" fill-rule="evenodd" d="M1192 13H1666V488H1192Z M1207 26V473H1651V26Z"/><polygon fill="#f58220" points="1644,302 1575,232 1574,395 1284,395 1282,362 1215,429 1214,463 1644,463"/><polygon fill="#f58220" points="1436,92 1214,314 1214,411 1484,141"/><polygon fill="#f58220" points="1395,33 1644,283 1643,185 1491,33"/><g class="brand-logo-text" fill="#ffffff" direction="rtl" font-family="Tahoma,Arial,'Segoe UI',sans-serif"><text class="brand-logo-title" x="1167" y="180" font-size="138" font-weight="400">آپتوس ایران</text><text class="brand-logo-sub" x="1158" y="430" font-size="86" font-weight="400">شرکت ســاختمانی، تولیدی و پژوهشی</text></g></svg></div>
+      <div class="cover-company"><svg class="brand-logo" viewBox="0 0 1680 496" role="img" aria-label="آپتوس ایران" xmlns="http://www.w3.org/2000/svg"><path fill="#676767" fill-rule="evenodd" d="M1192 13H1666V488H1192Z M1207 26V473H1651V26Z"/><polygon fill="#f58220" points="1644,302 1575,232 1574,395 1284,395 1282,362 1215,429 1214,463 1644,463"/><polygon fill="#f58220" points="1436,92 1214,314 1214,411 1484,141"/><polygon fill="#f58220" points="1395,33 1644,283 1643,185 1491,33"/><g class="brand-logo-text" fill="#676767" direction="rtl" font-family="Tahoma,Arial,'Segoe UI',sans-serif"><text class="brand-logo-title" x="1167" y="180" font-size="138" font-weight="400">آپتوس ایران</text><text class="brand-logo-sub" x="1158" y="430" font-size="86" font-weight="400">شرکت ســاختمانی، تولیدی و پژوهشی</text></g></svg></div>
       <div class="cover-visual"><div class="visual-stage"><img src="./assets/cover-render1.jpg" alt="${ui.cover.visualAlt}"></div></div>
     </section>
 
@@ -182,19 +182,19 @@ function catalog() {
 
     <section id="system" class="page-section system-section"><div class="section-inner">
       ${sectionHead(2, ui.system.title, ui.system.aside)}
-      <div class="system-grid"><div class="system-picture"><img src="./assets/facades/facade-02.jpg" alt="${ui.system.imageAlt}" loading="lazy"></div><div class="system-copy"><p>${ui.system.p1}</p><p>${ui.system.p2}</p></div></div></div>
+      <div class="system-grid"><div class="system-picture"><figure class="system-photo"><img src="./assets/render.png" alt="${ui.system.imageAlt}" loading="lazy"></figure><figure class="system-cad"><img src="./assets/system-3d-view.png" alt="${isFa ? "نمای سه‌بعدی سوله پیش‌ساخته" : lang === "tr" ? "Prefabrik beton yapının 3B görünümü" : "3D view of the precast concrete shed"}" loading="lazy"></figure></div><div class="system-copy"><p>${ui.system.p1}</p><p>${ui.system.p2}</p></div></div></div>
     </div></section>
     
     <section id="explore" class="page-section explore-section explore-full" aria-label="${safe(ui.explore.title)}">
       <div class="explore-hero">
-        <div class="explore-bar"><div class="explore-title"><span class="eyebrow">AIPS / 3D</span><h2>${ui.explore.title}</h2></div><p>${ui.explore.diagramTitle}</p><span class="explore-count" dir="ltr">01—08</span></div>
+        <div class="explore-bar"><div class="explore-title"><h2>${ui.explore.title}</h2></div><p>${ui.explore.diagramTitle}</p></div>
         <div class="model-stage"><div class="model-frame" id="model-frame">
           <img id="model-img" src="./assets/semi-assembly.png" alt="${ui.explore.diagramAlt}">
           <svg class="leader-lines" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true">${localizedParts.filter(part => part.pin && part.anchor).map(part => `<line data-pin-of="${part.id}" x1="${part.pin[0]}" y1="${part.pin[1]}" x2="${part.anchor[0]}" y2="${part.anchor[1]}"/>`).join("")}</svg>
           ${localizedParts.filter(part => part.pin && part.anchor).map(part => `<i class="pin-dot" data-pin-of="${part.id}" style="left:${part.anchor[0]}%;top:${part.anchor[1]}%" aria-hidden="true"></i>`).join("")}
           ${localizedParts.filter(part => part.pin).map(part => `<button type="button" class="pin" data-part="${part.id}" data-pin-of="${part.id}" style="left:${part.pin[0]}%;top:${part.pin[1]}%" aria-label="${text(ui.explore.select,{name:part.name})}"><span>${n(Number(part.number))}</span></button>`).join("")}
         </div></div>
-        <p class="diagram-source">${ui.explore.diagramHelp}</p>
+        <!-- <p class="diagram-source">${ui.explore.diagramHelp}</p> -->
       </div>
       <div class="explore-dock">
         <div class="part-selector" role="group" aria-label="${ui.explore.selectGroup}">${localizedParts.map(part => `<button type="button" data-part="${part.id}"><bdi>${n(Number(part.number))}</bdi> ${safe(part.name)}</button>`).join("")}</div>
@@ -204,7 +204,6 @@ function catalog() {
 
     <section id="types" class="page-section types-section"><div class="section-inner">
       ${sectionHead(3, ui.types.title, ui.types.aside)}
-      <div class="types-intro"><p>${ui.types.intro}</div>
       <div class="table-wrap" tabindex="0" role="region" aria-label="${ui.types.region}"><table class="types-table"><thead><tr><th scope="col" class="row-corner">${ui.types.underRoof}<br><small>${ui.types.clearSpan}</small></th>${spans.map(s => `<th scope="col"><span class="latin-token" dir="ltr">${s.module}M</span><small>${n(s.clearCm/100)} ${ui.types.meter}</small></th>`).join("")}</tr></thead><tbody>${heights.map(h => `<tr><th scope="row"><span class="latin-token" dir="ltr">${h.module}H</span><small>${n(h.underRoofCm/100)} ${ui.types.meter}</small></th>${spans.map(s => `<td><a class="type-cell" href="${typeLink(h.module,s.module)}" aria-label="${text(ui.types.cell,{ type:typeName(h.module,s.module), span:n(s.clearCm/100), height:n(h.underRoofCm/100) })}">${roofIcon()}<strong dir="ltr">${typeName(h.module,s.module)}</strong><span>${ui.types.view} ${arrow()}</span></a></td>`).join("")}</tr>`).join("")}</tbody></table></div>
     </div></section>
 
@@ -616,15 +615,29 @@ function bind() {
     try { document.getElementById(decodeURIComponent(location.hash.slice(1)))?.scrollIntoView(); } catch {}
   });
   if (!params.has("type") && !params.has("part") && "IntersectionObserver" in window) {
+    const setActiveNav = id => document.querySelectorAll(".primary-nav a").forEach(link => {
+      if (id && link.getAttribute("href").endsWith(`#${id}`)) link.setAttribute("aria-current","page");
+      else link.removeAttribute("aria-current");
+    });
+    let atBottom = false;
     const observer = new IntersectionObserver(entries => {
+      if (atBottom) return;
       const visible = entries.filter(entry => entry.isIntersecting).sort((a,b) => b.intersectionRatio-a.intersectionRatio)[0];
-      if (!visible) return;
-      document.querySelectorAll(".primary-nav a").forEach(link => {
-        if (link.getAttribute("href").endsWith(`#${visible.target.id}`)) link.setAttribute("aria-current","page");
-        else link.removeAttribute("aria-current");
-      });
+      if (visible) setActiveNav(visible.target.id);
     },{rootMargin:"-22% 0px -55% 0px",threshold:[0,.15,.4]});
-    ["cover",...sectionIds].forEach(id => { const section=document.getElementById(id); if(section) observer.observe(section); });
+    const trackedIds = ["cover",...sectionIds];
+    trackedIds.forEach(id => { const section=document.getElementById(id); if(section) observer.observe(section); });
+    // The footer (id="contact") is short and sits at the very end of the page, so it can never reach the
+    // observer band. When the page is scrolled to the bottom, highlight "ارتباط با ما" explicitly.
+    window.addEventListener("scroll", () => {
+      const now = window.innerHeight + window.scrollY >= document.documentElement.scrollHeight - 4;
+      if (now === atBottom) return;
+      atBottom = now;
+      if (now) { setActiveNav("contact"); return; }
+      const y = window.innerHeight * .33;
+      const current = trackedIds.map(id => document.getElementById(id)).filter(Boolean).find(el => { const r = el.getBoundingClientRect(); return r.top <= y && r.bottom > y; });
+      setActiveNav(current?.id);
+    }, { passive: true });
   }
 }
 
