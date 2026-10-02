@@ -70,7 +70,7 @@ function header(active = "cover") {
     <nav class="primary-nav" id="primary-nav" aria-label="${ui.menu}">
       <a href="${pageLink("cover")}" ${active === "cover" ? 'aria-current="page"' : ""}>${extra.nav.home}</a>
       <a href="${pageLink("about")}" ${active === "about" ? 'aria-current="page"' : ""}>${ui.about.title}</a>
-      <a href="${pageLink("system")}" ${active === "system" ? 'aria-current="page"' : ""}>معرفی سیستم</a>
+      <a href="${pageLink("system")}" ${active === "system" ? 'aria-current="page"' : ""}>${ui.system.title}</a>
       <a href="${pageLink("explore")}" ${active === "explore" ? 'aria-current="page"' : ""}>${extra.nav.interactive}</a>
       <a href="${pageLink("types")}" ${active === "types" ? 'aria-current="page"' : ""}>${extra.nav.types}</a>
       <a href="${pageLink("facades")}" ${active === "facades" ? 'aria-current="page"' : ""}>${extra.nav.facades}</a>
@@ -156,6 +156,9 @@ function aboutSection(abstract) {
     </div></section>`;
 }
 
+const aiBrand = `<span class="en-l1"><b>A</b>ptus <b>I</b>ndustrial <b>P</b>refabricated <b>S</b>ystem</span><span class="en-l2"><b>F</b>ast <b>F</b>abricated <b>P</b>roduct <span class="en-abbr">(AIPS-FFP)</span></span>`;
+const coverEnglish = (cls) => isFa ? `<p class="cover-en ${cls}" lang="en" dir="ltr">${aiBrand}</p>` : "";
+
 function catalog() {
   const abstract = isFa ? company.about : ui.about.abstract;
   document.title = isFa ? "سوله بتنی پیش‌ساخته آپتوس | APTUS IRAN" : lang === "tr" ? "APTUS İran | Prefabrik Beton Yapı Kataloğu" : "APTUS Iran | Precast Concrete Shed Catalog";
@@ -163,11 +166,12 @@ function catalog() {
     <section id="cover" class="cover-section" aria-labelledby="cover-title">
       <div class="cover-copy">
         <!-- <div class="cover-kicker"><span class="orange-line"></span><span>${ui.cover.kicker}</span></div> -->
-        <div class="cover-title-wrap"><div class="cover-hero"><h1 id="cover-title">${ui.cover.title}</h1></div></div>
+        <div class="cover-title-wrap"><div class="cover-hero"><h1 id="cover-title">${ui.cover.title}</h1>${coverEnglish("cover-en--inflow")}</div></div>
         <!-- <a class="cover-scroll" href="${pageLink("about")}">${ui.cover.enter}<span aria-hidden="true">↓</span></a> -->
       </div>
       <!-- <div class="cover-company"><svg class="brand-logo" viewBox="0 0 1680 496" role="img" aria-label="آپتوس ایران" xmlns="http://www.w3.org/2000/svg"><path fill="#676767" fill-rule="evenodd" d="M1192 13H1666V488H1192Z M1207 26V473H1651V26Z"/><polygon fill="#f58220" points="1644,302 1575,232 1574,395 1284,395 1282,362 1215,429 1214,463 1644,463"/><polygon fill="#f58220" points="1436,92 1214,314 1214,411 1484,141"/><polygon fill="#f58220" points="1395,33 1644,283 1643,185 1491,33"/><g class="brand-logo-text" fill="#676767" direction="rtl" font-family="Tahoma,Arial,'Segoe UI',sans-serif"><text class="brand-logo-title" x="1167" y="180" font-size="138" font-weight="400">آپتوس ایران</text><text class="brand-logo-sub" x="1158" y="430" font-size="86" font-weight="400">شرکت ســاختمانی، تولیدی و پژوهشی</text></g></svg></div> -->
-      <div class="cover-visual"><div class="visual-stage"><img src="./assets/cover-render1.jpg" alt="${ui.cover.visualAlt}"></div></div>
+      ${coverEnglish("cover-en--side")}
+      <div class="cover-visual"><div class="visual-stage"><img src="./assets/cover-render3.png" alt="${ui.cover.visualAlt}"></div></div>
     </section>
 
     ${aboutSection(abstract)}
@@ -196,7 +200,7 @@ function catalog() {
 
     <section id="types" class="page-section types-section"><div class="section-inner">
       ${sectionHead(3, ui.types.title, ui.types.aside)}
-      <div class="table-wrap" tabindex="0" role="region" aria-label="${ui.types.region}"><table class="types-table"><thead><tr><th scope="col" class="row-corner">${ui.types.underRoof}<br><small>${ui.types.clearSpan}</small></th>${spans.map(s => `<th scope="col"><span class="latin-token" dir="ltr">${s.module}M</span><small>${n(s.clearCm/100)} ${ui.types.meter}</small></th>`).join("")}</tr></thead><tbody>${heights.map(h => `<tr><th scope="row"><span class="latin-token" dir="ltr">${h.module}H</span><small>${n(h.underRoofCm/100)} ${ui.types.meter}</small></th>${spans.map(s => `<td><a class="type-cell" href="${typeLink(h.module,s.module)}" aria-label="${text(ui.types.cell,{ type:typeName(h.module,s.module), span:n(s.clearCm/100), height:n(h.underRoofCm/100) })}">${roofIcon()}<strong dir="ltr">${typeName(h.module,s.module)}</strong><span>${ui.types.view} ${arrow()}</span></a></td>`).join("")}</tr>`).join("")}</tbody></table></div>
+      <div class="table-wrap" tabindex="0" role="region" aria-label="${ui.types.region}"><table class="types-table"><thead><tr><th scope="col" class="row-corner">${ui.types.underRoof}<br><small>${ui.types.clearSpan}</small></th>${spans.map(s => `<th scope="col"><span class="latin-token" dir="ltr">${s.module}M</span><small>${n(s.clearCm/100)} ${ui.types.meter}</small></th>`).join("")}</tr></thead><tbody>${heights.map(h => `<tr><th scope="row"><span class="latin-token" dir="ltr">${h.module}H</span><small>${n(h.underRoofCm/100)} ${ui.types.meter}</small></th>${spans.map(s => `<td><a class="type-cell" href="${typeLink(h.module,s.module)}" aria-label="${text(ui.types.cell,{ type:typeName(h.module,s.module), span:n(s.clearCm/100), height:n(h.underRoofCm/100) })}">${roofIcon()}<strong dir="ltr">${typeName(h.module,s.module)}</strong><span><!-- ${ui.types.view} --> ${arrow()}</span></a></td>`).join("")}</tr>`).join("")}</tbody></table></div>
     </div></section>
 
     <section id="facades" class="page-section facades-section"><div class="section-inner">
@@ -207,7 +211,7 @@ function catalog() {
 
     <section id="applications" class="page-section applications-section"><div class="section-inner">
       ${sectionHead(6, extra.applications.title, extra.applications.aside)}
-      <div class="applications-grid">${localizedApplications.map((item,i) => `<article class="application-card" id="application-${item.id}"><img src="${item.image}" alt="${safe(item.title)}" loading="lazy"><div><span class="eyebrow">${String(i+1).padStart(2,"0")} / 05</span><h3>${safe(item.title)}</h3></div></article>`).join("")}</div>
+      <div class="applications-grid">${localizedApplications.map((item,i) => `<article class="application-card" id="application-${item.id}"><img src="${item.image}" alt="${safe(item.title)}" loading="lazy"><div><!-- <span class="eyebrow">${String(i+1).padStart(2,"0")} / 05</span> --><h3>${safe(item.title)}</h3></div></article>`).join("")}</div>
     </div></section>
 
     <section id="benefits" class="page-section benefits-section"><div class="section-inner">
@@ -513,7 +517,7 @@ function partDetail(part) {
   document.title = `${part.name} | APTUS IRAN`;
   return `${header("parts")}<main class="detail-main"><div class="detail-container"><nav class="breadcrumbs" aria-label="${ui.detail.catalog}"><a href="${pageLink("cover")}">${ui.detail.catalog}</a><span>›</span><a href="${pageLink("explore")}">${ui.explore.title}</a><span>›</span><strong>${part.name}</strong></nav>
     <div class="detail-heading"><div><span class="eyebrow">AIPS / ${part.number}</span><h1>${safe(part.name)}</h1><p>${safe(part.role)}</p></div><a class="outline-button" href="${pageLink("parts")}">${extra.nav.overview}${arrow("back")}</a></div>
-    <div class="part-detail-layout"><div class="part-detail-image"><!-- <span>${text(extra.part.total,{number:n(Number(part.number))})}</span> --><img src="${part.image}" alt="${safe(ariaPart(part))}"><small lang="en" dir="ltr">${part.english}</small></div><div class="part-detail-copy"><span class="eyebrow">AIPS / ${part.number}</span><h2>${extra.part.details}</h2>${(part.paragraphs || [part.description]).map(p => `<p>${safe(p)}</p>`).join("")}${part.technicalPdf ? `<a class="outline-button source-pdf" href="${part.technicalPdf}" target="_blank" rel="noopener">${extra.part.source} <span aria-hidden="true">↗</span></a>` : ""}${!part.pin ? `<p class="detail-note">${extra.part.corner}</p>` : ""}</div></div>
+    <div class="part-detail-layout"><div class="part-detail-image"><!-- <span>${text(extra.part.total,{number:n(Number(part.number))})}</span> --><img src="${part.image}" alt="${safe(ariaPart(part))}"><small lang="en" dir="ltr">${part.english}</small></div><div class="part-detail-copy"><span class="eyebrow">AIPS / ${part.number}</span><h2>${extra.part.details}</h2>${(part.paragraphs || [part.description]).map(p => `<p>${safe(p)}</p>`).join("")}${part.technicalPdf ? `<!-- <a class="outline-button source-pdf" href="${part.technicalPdf}" target="_blank" rel="noopener">${extra.part.source} <span aria-hidden="true">↗</span></a> -->` : ""}${!part.pin ? `<!-- <p class="detail-note">${extra.part.corner}</p> -->` : ""}</div></div>
     ${part.gallery?.length ? `<section class="component-gallery"><div class="section-head"><h2>${extra.part.additional}</h2><span class="section-aside">${extra.gallery}</span></div><div class="component-gallery-grid">${part.gallery.map((src,i) => `<a href="${src}" target="_blank" rel="noopener"><img src="${src}" loading="lazy" alt="${text(extra.galleryAlt,{number:n(i+1),name:safe(part.name)})}"></a>`).join("")}</div></section>` : ""}
     <div class="detail-bottom-link"><span>${ui.detail.placement}</span><a href="${pageLink("explore")}">${ui.explore.title}${arrow("back")}</a></div>
   </div></main>${footer()}`;

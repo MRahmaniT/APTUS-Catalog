@@ -248,7 +248,8 @@ html[dir=rtl]
 .application-card h3{
     font-size:1rem;
     line-height:1.55;
-    margin:9px 0 0}
+    margin:9px 0 0;
+    text-align:center}
 .source-caption{
     font-size:.78rem;
     color:#666;
