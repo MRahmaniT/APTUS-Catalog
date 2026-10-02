@@ -70,10 +70,11 @@ function header(active = "cover") {
     <nav class="primary-nav" id="primary-nav" aria-label="${ui.menu}">
       <a href="${pageLink("cover")}" ${active === "cover" ? 'aria-current="page"' : ""}>${extra.nav.home}</a>
       <a href="${pageLink("about")}" ${active === "about" ? 'aria-current="page"' : ""}>${ui.about.title}</a>
-      <a href="${pageLink("system")}" ${active === "system" ? 'aria-current="page"' : ""}>${ui.system.title}</a>
-      ${submenu("types", extra.nav.types, [[pageLink("types"), extra.nav.standard], [pageLink("facades"), extra.nav.facades]])}
-      ${submenu("parts", extra.nav.parts, [[pageLink("parts"), extra.nav.overview], [pageLink("explore"), extra.nav.interactive], ...localizedParts.map(part => [partLink(part.id), part.name])])}
-      ${submenu("applications", extra.nav.applications, [[pageLink("applications"), extra.nav.applications], ...localizedApplications.map(item => [pageLink(`application-${item.id}`), item.title])])}
+      <a href="${pageLink("system")}" ${active === "system" ? 'aria-current="page"' : ""}>معرفی سیستم</a>
+      <a href="${pageLink("explore")}" ${active === "explore" ? 'aria-current="page"' : ""}>${extra.nav.interactive}</a>
+      <a href="${pageLink("types")}" ${active === "types" ? 'aria-current="page"' : ""}>${extra.nav.types}</a>
+      <a href="${pageLink("facades")}" ${active === "facades" ? 'aria-current="page"' : ""}>${extra.nav.facades}</a>
+      <a href="${pageLink("applications")}" ${active === "applications" ? 'aria-current="page"' : ""}>${extra.nav.applications}</a>
       <a href="${pageLink("benefits")}" ${active === "benefits" ? 'aria-current="page"' : ""}>${extra.nav.benefits}</a>
       <a href="${pageLink("contact")}" ${active === "contact" ? 'aria-current="page"' : ""}>${extra.nav.contactInfo}</a>
     </nav>
