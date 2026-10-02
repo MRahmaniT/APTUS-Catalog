@@ -303,7 +303,7 @@ function frameDiagram(h, s) {
       <marker
         id="dimArrow"
         viewBox="0 0 10 10"
-        refX="5"
+        refX="10"
         refY="5"
         markerWidth="6"
         markerHeight="6"
@@ -521,7 +521,7 @@ function partDetail(part) {
   document.title = `${part.name} | APTUS IRAN`;
   return `${header("parts")}<main class="detail-main"><div class="detail-container"><nav class="breadcrumbs" aria-label="${ui.detail.catalog}"><a href="${pageLink("cover")}">${ui.detail.catalog}</a><span>›</span><a href="${pageLink("explore")}">${ui.explore.title}</a><span>›</span><strong>${part.name}</strong></nav>
     <div class="detail-heading"><div><span class="eyebrow">AIPS / ${part.number}</span><h1>${safe(part.name)}</h1><p>${safe(part.role)}</p></div><a class="outline-button" href="${pageLink("parts")}">${extra.nav.overview}${arrow("back")}</a></div>
-    <div class="part-detail-layout"><div class="part-detail-image"><span>${text(extra.part.total,{number:n(Number(part.number))})}</span><img src="${part.image}" alt="${safe(ariaPart(part))}"><small lang="en" dir="ltr">${part.english}</small></div><div class="part-detail-copy"><span class="eyebrow">AIPS / ${part.number}</span><h2>${extra.part.details}</h2>${(part.paragraphs || [part.description]).map(p => `<p>${safe(p)}</p>`).join("")}${part.technicalPdf ? `<a class="outline-button source-pdf" href="${part.technicalPdf}" target="_blank" rel="noopener">${extra.part.source} <span aria-hidden="true">↗</span></a>` : ""}${!part.pin ? `<p class="detail-note">${extra.part.corner}</p>` : ""}</div></div>
+    <div class="part-detail-layout"><div class="part-detail-image"><!-- <span>${text(extra.part.total,{number:n(Number(part.number))})}</span> --><img src="${part.image}" alt="${safe(ariaPart(part))}"><small lang="en" dir="ltr">${part.english}</small></div><div class="part-detail-copy"><span class="eyebrow">AIPS / ${part.number}</span><h2>${extra.part.details}</h2>${(part.paragraphs || [part.description]).map(p => `<p>${safe(p)}</p>`).join("")}${part.technicalPdf ? `<a class="outline-button source-pdf" href="${part.technicalPdf}" target="_blank" rel="noopener">${extra.part.source} <span aria-hidden="true">↗</span></a>` : ""}${!part.pin ? `<p class="detail-note">${extra.part.corner}</p>` : ""}</div></div>
     ${part.gallery?.length ? `<section class="component-gallery"><div class="section-head"><h2>${extra.part.additional}</h2><span class="section-aside">${extra.gallery}</span></div><div class="component-gallery-grid">${part.gallery.map((src,i) => `<a href="${src}" target="_blank" rel="noopener"><img src="${src}" loading="lazy" alt="${text(extra.galleryAlt,{number:n(i+1),name:safe(part.name)})}"></a>`).join("")}</div></section>` : ""}
     <div class="detail-bottom-link"><span>${ui.detail.placement}</span><a href="${pageLink("explore")}">${ui.explore.title}${arrow("back")}</a></div>
   </div></main>${footer()}`;
