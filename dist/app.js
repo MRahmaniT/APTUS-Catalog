@@ -162,7 +162,7 @@ function catalog() {
     <section id="cover" class="cover-section" aria-labelledby="cover-title">
       <div class="cover-copy">
         <!-- <div class="cover-kicker"><span class="orange-line"></span><span>${ui.cover.kicker}</span></div> -->
-        <div class="cover-title-wrap"><div class="cover-glass"><!-- <span class="cover-glass-kicker">${ui.cover.kicker}</span> --><h1 id="cover-title">${ui.cover.title}</h1><!-- <span class="cover-glass-rule" aria-hidden="true"></span><p class="cover-glass-sub">${ui.cover.sub}</p> --></div></div>
+        <div class="cover-title-wrap"><div class="cover-hero"><h1 id="cover-title">${ui.cover.title}</h1></div></div>
         <!-- <a class="cover-scroll" href="${pageLink("about")}">${ui.cover.enter}<span aria-hidden="true">↓</span></a> -->
       </div>
       <!-- <div class="cover-company"><svg class="brand-logo" viewBox="0 0 1680 496" role="img" aria-label="آپتوس ایران" xmlns="http://www.w3.org/2000/svg"><path fill="#676767" fill-rule="evenodd" d="M1192 13H1666V488H1192Z M1207 26V473H1651V26Z"/><polygon fill="#f58220" points="1644,302 1575,232 1574,395 1284,395 1282,362 1215,429 1214,463 1644,463"/><polygon fill="#f58220" points="1436,92 1214,314 1214,411 1484,141"/><polygon fill="#f58220" points="1395,33 1644,283 1643,185 1491,33"/><g class="brand-logo-text" fill="#676767" direction="rtl" font-family="Tahoma,Arial,'Segoe UI',sans-serif"><text class="brand-logo-title" x="1167" y="180" font-size="138" font-weight="400">آپتوس ایران</text><text class="brand-logo-sub" x="1158" y="430" font-size="86" font-weight="400">شرکت ســاختمانی، تولیدی و پژوهشی</text></g></svg></div> -->
