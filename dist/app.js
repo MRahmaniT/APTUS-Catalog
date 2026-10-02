@@ -605,30 +605,33 @@ function bind() {
   if (location.hash && !params.has("type") && !params.has("part")) requestAnimationFrame(() => {
     try { document.getElementById(decodeURIComponent(location.hash.slice(1)))?.scrollIntoView(); } catch {}
   });
-  if (!params.has("type") && !params.has("part") && "IntersectionObserver" in window) {
+  if (!params.has("type") && !params.has("part")) {
     const setActiveNav = id => document.querySelectorAll(".primary-nav a").forEach(link => {
       if (id && link.getAttribute("href").endsWith(`#${id}`)) link.setAttribute("aria-current","page");
       else link.removeAttribute("aria-current");
     });
-    let atBottom = false;
-    const observer = new IntersectionObserver(entries => {
-      if (atBottom) return;
-      const visible = entries.filter(entry => entry.isIntersecting).sort((a,b) => b.intersectionRatio-a.intersectionRatio)[0];
-      if (visible) setActiveNav(visible.target.id);
-    },{rootMargin:"-22% 0px -55% 0px",threshold:[0,.15,.4]});
     const trackedIds = ["cover",...sectionIds];
-    trackedIds.forEach(id => { const section=document.getElementById(id); if(section) observer.observe(section); });
-    // The footer (id="contact") is short and sits at the very end of the page, so it can never reach the
-    // observer band. When the page is scrolled to the bottom, highlight "ارتباط با ما" explicitly.
-    window.addEventListener("scroll", () => {
-      const now = window.innerHeight + window.scrollY >= document.documentElement.scrollHeight - 4;
-      if (now === atBottom) return;
-      atBottom = now;
-      if (now) { setActiveNav("contact"); return; }
-      const y = window.innerHeight * .33;
-      const current = trackedIds.map(id => document.getElementById(id)).filter(Boolean).find(el => { const r = el.getBoundingClientRect(); return r.top <= y && r.bottom > y; });
-      setActiveNav(current?.id);
-    }, { passive: true });
+    // Scroll-position based: the active item is the last section whose top has passed a reference line.
+    // Unlike an IntersectionObserver band, this also works for very tall sections (e.g. "about") and when scrolling back up.
+    let ticking = false;
+    const updateActiveNav = () => {
+      ticking = false;
+      const atBottom = window.innerHeight + window.scrollY >= document.documentElement.scrollHeight - 4;
+      if (atBottom) { setActiveNav("contact"); return; }
+      const line = window.innerHeight * .33;
+      let currentId = "cover", bestTop = -Infinity;
+      trackedIds.forEach(id => {
+        const el = document.getElementById(id);
+        if (!el) return;
+        const top = el.getBoundingClientRect().top;
+        if (top <= line && top > bestTop) { bestTop = top; currentId = id; }
+      });
+      setActiveNav(currentId);
+    };
+    const onScroll = () => { if (!ticking) { ticking = true; requestAnimationFrame(updateActiveNav); } };
+    window.addEventListener("scroll", onScroll, { passive: true });
+    window.addEventListener("resize", onScroll, { passive: true });
+    updateActiveNav();
   }
 }
 
