@@ -1,4 +1,4 @@
-import { company, spans, heights, parts } from "./content.js";
+import { company, spans, heights, parts, benefitIcons } from "./content.js";
 import { copy, translatedParts } from "./i18n.js";
 import { partCopy, benefitGroups, applications, facades, documents } from "./supplied-content.js";
 import { editorialUI, editorialParts, editorialBenefits, editorialApplications, editorialDocumentTitles } from "./editorial-i18n.js";
@@ -58,11 +58,13 @@ function sectionHead(index, title, aside = "") {
   return `<div class="section-head"><div><span class="eyebrow"></span><h2>${title}</h2></div>${aside ? `<p class="section-aside">${aside}</p>` : ""}</div>`;
 }
 
+const brandLogo = () => `<svg class="brand-logo" viewBox="0 0 1680 496" role="img" aria-label="آپتوس ایران" xmlns="http://www.w3.org/2000/svg"><path fill="#676767" fill-rule="evenodd" d="M1192 13H1666V488H1192Z M1207 26V473H1651V26Z"/><polygon fill="#f58220" points="1644,302 1575,232 1574,395 1284,395 1282,362 1215,429 1214,463 1644,463"/><polygon fill="#f58220" points="1436,92 1214,314 1214,411 1484,141"/><polygon fill="#f58220" points="1395,33 1644,283 1643,185 1491,33"/><g class="brand-logo-text" fill="#676767" direction="rtl" font-family="Tahoma,Arial,'Segoe UI',sans-serif"><text class="brand-logo-title" x="1167" y="180" font-size="138" font-weight="400">آپتوس ایران</text><text class="brand-logo-sub" x="1158" y="430" font-size="86" font-weight="400">شرکت ســاختمانی، تولیدی و پژوهشی</text></g></svg>`;
+
 function header(active = "cover") {
   const submenu = (id, label, entries) => `<details class="nav-group ${active === id ? "is-active" : ""}"><summary>${label}<span class="nav-chevron" aria-hidden="true"></span></summary><div class="nav-submenu">${entries.map(([href, name]) => `<a href="${href}">${name}</a>`).join("")}</div></details>`;
   return `<header class="site-header" id="top">
     <a class="brand" href="${pageLink("cover")}" aria-label="${ui.homeLabel}">
-      <img src="./assets/aptus-brand.png" alt="" style="border-radius: 0px; width="43" height="43">
+      ${brandLogo()}
       <!--<span class="brand-copy"><strong>${companyName}</strong><small lang="en" dir="ltr">APTUS IRAN</small></span> -->
     </a>
     <nav class="primary-nav" id="primary-nav" aria-label="${ui.menu}">
@@ -86,7 +88,7 @@ function header(active = "cover") {
 
 function footer() {
   return `<footer class="site-footer">
-    <div class="footer-hero"><div><span class="eyebrow">APTUS INDUSTRIAL PRECAST SYSTEM</span><h2>${ui.footer.tagline}</h2></div><strong lang="en" dir="ltr">APTUS</strong></div>
+    <div class="footer-hero"><div><!-- <span class="eyebrow">APTUS INDUSTRIAL PRECAST SYSTEM</span> --><h2>${ui.footer.tagline}</h2></div><!-- <strong lang="en" dir="ltr">APTUS</strong> --></div>
     <div class="footer-grid">
       <div class="footer-about">
         <a class="footer-brand" href="${pageLink("cover")}" aria-label="${ui.homeLabel}">
@@ -114,6 +116,54 @@ function benefitsList() {
   return `<ol class="benefits-single-list" role="list">${localizedBenefits.flatMap(group => group.items).map((item, i) => `<li><bdi>${String(i + 1).padStart(2, "0")}</bdi><span>${safe(item)}</span></li>`).join("")}</ol>`;
 }
 
+
+const aboutIcons = {
+  research: `<svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 6h16M18 6v18L6 50a5 5 0 0 0 4.5 7.5h24A5 5 0 0 0 39 50L26 24V6"/><path d="M11 40h24"/><circle cx="47" cy="23" r="7"/><path d="M47 11v4M47 31v4M35 23h4M55 23h4M38.5 14.5l2.8 2.8M52.7 28.7l2.8 2.8M55.5 14.5l-2.8 2.8M41.3 28.7l-2.8 2.8"/><circle cx="22" cy="47" r="1.3"/><circle cx="29" cy="50" r="1.3"/></svg>`,
+  products: `<svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 22 24 14l18 8-18 8Z"/><path d="M6 22v14l18 8V30M24 44l18-8V22"/><path d="M34 50l12 6 14-7-8-4"/><path d="M46 42l14-7 3 2-14 7"/></svg>`,
+  contractor: `<svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 58V10M22 58V10M12 20h10M12 30h10M12 40h10M12 50h10M12 20l10 10M12 30l10 10M12 40l10 10"/><path d="M3 10h42M17 3v7M35 10v10"/><path d="M32 20h6v5h-6z"/><path d="M33 58V42h24v16M29 58h32"/><path d="M38 46h2M44 46h2M50 46h2M38 52h2M44 52h2M50 52h2"/></svg>`
+};
+const aboutMissions = [
+  { icon: "research", title: "تحقیق و توسعه", text: "تولید دانش و نوآوری در عرصه صنعت بتن با اجرای پروژه‌های تحقیقاتی و پژوهشی" },
+  { icon: "products", title: "تولید انواع محصولات بتنی", text: "شامل بتن آماده، کفپوش، جدول، بلوک، دیوار، نیوجرسی و …" },
+  { icon: "contractor", title: "پیمانکار عمومی", text: "با داشتن بالاترین رتبه مرتبط کشوری" }
+];
+const aboutGoals = [
+  "ارتقاء جایگاه اجتماعی سازمان",
+  "توسعه بازارهای فروش و افزایش سهم بازار",
+  "ارتقاء سطح عملکرد و مشارکت منابع انسانی",
+  "توسعه و ارتقاء سطح بهره‌وری فرآیند تولید",
+  "ثبات کیفیت محصولات تولیدی و ترویج هویت آن در بازار",
+  "مشتری‌مداری و ایجاد بالاترین استانداردها برای رضایتمندی مشتریان",
+  "توسعه و ارتقاء اصول ایمنی، بهداشت و محیط زیست در محدوده کاری سازمان"
+];
+
+function aboutSection(abstract) {
+  if (!isFa) return `<section id="about" class="page-section about-section"><div class="section-inner">
+      ${sectionHead(1, ui.about.title, ui.about.aside)}
+      <div class="about-grid"><div class="about-quote"><span class="large-quote" aria-hidden="true">“</span><p>${ui.about.quote}</p><span class="about-rule"></span></div><div class="about-body"><p>${abstract}</p><p>${ui.about.extra}</p><a class="text-link" href="${pageLink("system")}">${ui.about.link}${arrow()}</a></div></div>
+    </div></section>`;
+  return `<section id="about" class="page-section about-section about-rich"><div class="section-inner">
+      ${sectionHead(1, ui.about.title, ui.about.aside)}
+      <div class="about-intro">
+        <div class="about-badge"><strong>40<sup>+</sup></strong><span>سال فعالیت در صنعت ساختمان کشور</span></div>
+        <div class="about-intro-text">
+          <h3>آپتوس ایران</h3>
+          <p>شرکت آپتوس ایران با بیش از چهار دهه فعالیت در صنعت ساختمان کشور به‌عنوان یک سازمان دانش‌محور، همواره در تلاش بوده است که با اتکا به دانش فنی و تجربه نیروی انسانی متخصص خود نقش بسزایی را در توسعه و تعالی زیرساخت‌های عمرانی و تأمین نیاز مشتریان ایفا نماید؛ از این‌رو مأموریت یا محدوده کاری اصلی این شرکت به شرح ذیل معین گردیده است:</p>
+        </div>
+      </div>
+      <div class="mission-grid">${aboutMissions.map((item, i) => `<article class="mission-card"><span class="mission-index" aria-hidden="true">0${i + 1}</span><div class="mission-icon">${aboutIcons[item.icon]}</div><h4>${item.title}</h4><p>${item.text}</p></article>`).join("")}</div>
+      <div class="about-philosophy">
+        <div class="about-slogan">
+          <span class="slogan-mark" aria-hidden="true">“</span>
+          <strong>ما کیفیت می‌سازیم</strong>
+          <p>بر این اساس روند حرکتی شرکت آپتوس ایران با اعتقاد راسخ به اصل بهبود مستمر و اجرای اثربخش فرآیندهای کاری در چارچوب نظام مدیریت یکپارچه تداوم یافته است؛ از این‌رو کاملاً مشهود است که با تثبیت سطح کیفی محصولات، شعار «ما کیفیت می‌سازیم» در تأمین رضایت مشتریان و سایر ذینفعان تبلور یافته است. با چنین نگرشی، تعالی و نیل به اهداف ذیل، مؤلفه‌های رشد و توسعه مجموعه را مشخص می‌نماید:</p>
+        </div>
+        <ol class="goal-list">${aboutGoals.map((goal, i) => `<li><bdi>${String(i + 1).padStart(2, "0")}</bdi><span>${goal}</span></li>`).join("")}</ol>
+      </div>
+      <!-- <a class="text-link" href="${pageLink("system")}">${ui.about.link}${arrow()}</a> -->
+    </div></section>`;
+}
+
 function catalog() {
   const abstract = isFa ? company.about : ui.about.abstract;
   document.title = isFa ? "سوله بتنی پیش‌ساخته آپتوس | APTUS IRAN" : lang === "tr" ? "APTUS İran | Prefabrik Beton Yapı Kataloğu" : "APTUS Iran | Precast Concrete Shed Catalog";
@@ -121,27 +171,36 @@ function catalog() {
     <section id="cover" class="cover-section" aria-labelledby="cover-title">
       <div class="cover-copy">
         <!-- <div class="cover-kicker"><span class="orange-line"></span><span>${ui.cover.kicker}</span></div> -->
-        <div class="cover-title-wrap"><h1 id="cover-title">${ui.cover.title}</h1></div>
+        <div class="cover-title-wrap"><div class="cover-glass"><!-- <span class="cover-glass-kicker">${ui.cover.kicker}</span> --><h1 id="cover-title">${ui.cover.title}</h1><!-- <span class="cover-glass-rule" aria-hidden="true"></span><p class="cover-glass-sub">${ui.cover.sub}</p> --></div></div>
         <!-- <a class="cover-scroll" href="${pageLink("about")}">${ui.cover.enter}<span aria-hidden="true">↓</span></a> -->
       </div>
-      <div class="cover-company"><img src="./assets/aptus-logo.jpg" alt="" width="54" height="54"><span><strong>${companyName}</strong><small>${ui.about.legal}</small></span></div>
+      <div class="cover-company"><svg class="brand-logo" viewBox="0 0 1680 496" role="img" aria-label="آپتوس ایران" xmlns="http://www.w3.org/2000/svg"><path fill="#676767" fill-rule="evenodd" d="M1192 13H1666V488H1192Z M1207 26V473H1651V26Z"/><polygon fill="#f58220" points="1644,302 1575,232 1574,395 1284,395 1282,362 1215,429 1214,463 1644,463"/><polygon fill="#f58220" points="1436,92 1214,314 1214,411 1484,141"/><polygon fill="#f58220" points="1395,33 1644,283 1643,185 1491,33"/><g class="brand-logo-text" fill="#ffffff" direction="rtl" font-family="Tahoma,Arial,'Segoe UI',sans-serif"><text class="brand-logo-title" x="1167" y="180" font-size="138" font-weight="400">آپتوس ایران</text><text class="brand-logo-sub" x="1158" y="430" font-size="86" font-weight="400">شرکت ســاختمانی، تولیدی و پژوهشی</text></g></svg></div>
       <div class="cover-visual"><div class="visual-stage"><img src="./assets/cover-render1.jpg" alt="${ui.cover.visualAlt}"></div></div>
     </section>
 
-    <section id="about" class="page-section about-section"><div class="section-inner">
-      ${sectionHead(1, ui.about.title, ui.about.aside)}
-      <div class="about-grid"><div class="about-quote"><span class="large-quote" aria-hidden="true">“</span><p>${ui.about.quote}</p><span class="about-rule"></span></div><div class="about-body"><p>${abstract}</p><p>${ui.about.extra}</p><a class="text-link" href="${pageLink("system")}">${ui.about.link}${arrow()}</a></div></div>
-    </div></section>
+    ${aboutSection(abstract)}
 
     <section id="system" class="page-section system-section"><div class="section-inner">
       ${sectionHead(2, ui.system.title, ui.system.aside)}
       <div class="system-grid"><div class="system-picture"><img src="./assets/facades/facade-02.jpg" alt="${ui.system.imageAlt}" loading="lazy"></div><div class="system-copy"><p>${ui.system.p1}</p><p>${ui.system.p2}</p></div></div></div>
     </div></section>
     
-    <section id="explore" class="page-section explore-section"><div class="section-inner">
-      ${sectionHead(7, ui.explore.title, ui.explore.aside)}
-      <div class="explore-layout"><div class="diagram-column"><div class="diagram-board"><div class="board-bar"><span>${ui.explore.diagramTitle}</span><span>01—08</span></div><div class="diagram-canvas"><img src="./assets/semi-assembly.png" alt="${ui.explore.diagramAlt}" loading="lazy">${localizedParts.filter(part => part.pin).map(part => `<button type="button" class="hotspot" data-part="${part.id}" style="left:${part.pin[0]}%;top:${part.pin[1]}%" aria-label="${text(ui.explore.select,{name:part.name})}"><span>${n(Number(part.number))}</span></button>`).join("")}</div><p class="diagram-source">${ui.explore.diagramHelp}</p></div><div class="part-selector" role="group" aria-label="${ui.explore.selectGroup}">${localizedParts.map(part => `<button type="button" data-part="${part.id}"><bdi>${n(Number(part.number))}</bdi> ${safe(part.name)}</button>`).join("")}</div></div><aside class="preview-panel" aria-live="polite" id="part-preview"></aside></div>
-    </div></section>
+    <section id="explore" class="page-section explore-section explore-full" aria-label="${safe(ui.explore.title)}">
+      <div class="explore-hero">
+        <div class="explore-bar"><div class="explore-title"><span class="eyebrow">AIPS / 3D</span><h2>${ui.explore.title}</h2></div><p>${ui.explore.diagramTitle}</p><span class="explore-count" dir="ltr">01—08</span></div>
+        <div class="model-stage"><div class="model-frame" id="model-frame">
+          <img id="model-img" src="./assets/semi-assembly.png" alt="${ui.explore.diagramAlt}">
+          <svg class="leader-lines" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true">${localizedParts.filter(part => part.pin && part.anchor).map(part => `<line data-pin-of="${part.id}" x1="${part.pin[0]}" y1="${part.pin[1]}" x2="${part.anchor[0]}" y2="${part.anchor[1]}"/>`).join("")}</svg>
+          ${localizedParts.filter(part => part.pin && part.anchor).map(part => `<i class="pin-dot" data-pin-of="${part.id}" style="left:${part.anchor[0]}%;top:${part.anchor[1]}%" aria-hidden="true"></i>`).join("")}
+          ${localizedParts.filter(part => part.pin).map(part => `<button type="button" class="pin" data-part="${part.id}" data-pin-of="${part.id}" style="left:${part.pin[0]}%;top:${part.pin[1]}%" aria-label="${text(ui.explore.select,{name:part.name})}"><span>${n(Number(part.number))}</span></button>`).join("")}
+        </div></div>
+        <p class="diagram-source">${ui.explore.diagramHelp}</p>
+      </div>
+      <div class="explore-dock">
+        <div class="part-selector" role="group" aria-label="${ui.explore.selectGroup}">${localizedParts.map(part => `<button type="button" data-part="${part.id}"><bdi>${n(Number(part.number))}</bdi> ${safe(part.name)}</button>`).join("")}</div>
+        <aside class="part-dock" aria-live="polite" id="part-preview"></aside>
+      </div>
+    </section>
 
     <section id="types" class="page-section types-section"><div class="section-inner">
       ${sectionHead(3, ui.types.title, ui.types.aside)}
@@ -151,7 +210,7 @@ function catalog() {
 
     <section id="facades" class="page-section facades-section"><div class="section-inner">
       ${sectionHead(4, extra.facades.title, extra.facades.aside)}
-      <div class="facade-grid">${facades.slice(0,6).map((item,i) => `<figure class="facade-card"><img src="${item.image}" alt="${text(extra.galleryAlt,{number:n(i+1),name:extra.facades.title})}" loading="lazy"><figcaption>${extra.facades.caption} <bdi>${n(i+1).toString().padStart(2,"0")}</bdi></figcaption></figure>`).join("")}</div>
+      <div class="facade-grid">${facades.slice(0,6).map((item,i) => `<figure class="facade-card"><img src="${item.image}" alt="${text(extra.galleryAlt,{number:n(i+1),name:extra.facades.title})}" loading="lazy"><figcaption>${extra.facades.caption} <bdi>${n(i+1).toString().padStart(2)}</bdi></figcaption></figure>`).join("")}</div>
       <div class="section-action"><a class="solid-button" href="${detailLink("facades")}">${extra.facades.all}${arrow()}</a></div>
     </div></section>
 
@@ -165,6 +224,9 @@ function catalog() {
       <div class="benefits-window">
         <div class="benefits-scroll" id="benefits-scroll" role="region" aria-label="${safe(ui.benefits.title)}">${benefitsList()}</div>
         <button class="benefits-toggle" type="button" aria-expanded="false" aria-controls="benefits-scroll"><span>${extra.benefits.preview}</span><span class="benefits-chevron" aria-hidden="true"></span></button>
+      </div>
+      <div class="benefit-ribbon" dir="ltr" role="region" aria-label="${safe(ui.benefits.title)}">
+        <div class="ribbon-track">${[0, 1].map(round => benefitIcons.map(item => `<figure class="ribbon-card" dir="rtl" ${round ? 'aria-hidden="true"' : ""}><div class="ribbon-icon"><img src="./assets/benefits/${item.file}.png" alt="" loading="lazy" draggable="false"></div><figcaption>${safe(item.title)}</figcaption></figure>`).join("")).join("")}</div>
       </div>
     </div></section>
 
@@ -484,12 +546,13 @@ function documentsDetail() {
 function setActivePart(id) {
   const part = localizedParts.find(item => item.id===id);
   if (!part) return;
-  document.querySelectorAll("[data-part]").forEach(element => {
-    const selected = element.dataset.part===id;
+  document.querySelectorAll("[data-part],[data-pin-of]").forEach(element => {
+    const selected = (element.dataset.part || element.dataset.pinOf)===id;
     element.classList.toggle("is-active",selected);
-    element.setAttribute("aria-pressed",String(selected));
+    if (element.dataset.part) element.setAttribute("aria-pressed",String(selected));
   });
-  document.querySelector("#part-preview").innerHTML = `<div class="preview-top"><span class="eyebrow">AIPS / ${part.number}</span><span class="preview-cross" aria-hidden="true">✳</span></div><div class="preview-image"><img src="${part.image}" alt="${safe(text(ui.explore.imageAlt,{name:part.name}))}"></div><span class="preview-label" lang="en" dir="ltr">${part.english}</span><h3>${safe(part.name)}</h3><p class="preview-excerpt">${safe(part.paragraphs?.[0] || part.description)}</p><a class="solid-button" href="${partLink(part.id)}">${extra.more}${arrow()}</a>`;
+  const paragraphs = (part.paragraphs || [part.description]).slice(0,2).map(p => `<p class="dock-text">${safe(p)}</p>`).join("");
+  document.querySelector("#part-preview").innerHTML = `<div class="dock-image"><img src="${part.image}" alt="${safe(text(ui.explore.imageAlt,{name:part.name}))}"></div><div class="dock-body"><div class="dock-top"><!-- <span class="eyebrow">AIPS / ${part.number}</span> --><!-- <span class="dock-label" lang="en" dir="ltr">${part.english}</span> --></div><h3>${safe(part.name)}</h3>${paragraphs}<a class="solid-button" href="${partLink(part.id)}">${extra.more}${arrow()}</a></div>`;
 }
 
 function bind() {
@@ -528,6 +591,25 @@ function bind() {
     else nextUrl.searchParams.set("lang",next);
     location.assign(nextUrl.href);
   }));
+  const modelImg = document.getElementById("model-img");
+  const modelFrame = document.getElementById("model-frame");
+  if (modelImg && modelFrame) {
+    const fit = () => { if (modelImg.naturalWidth) modelFrame.style.setProperty("--ar", (modelImg.naturalWidth / modelImg.naturalHeight).toFixed(4)); };
+    if (modelImg.complete) fit(); else modelImg.addEventListener("load", fit);
+    if (params.has("calibrate")) {
+      const readout = document.createElement("div");
+      readout.className = "calibrate-readout";
+      readout.textContent = "Calibrate: click on the 3D image to read [x, y] in percent";
+      document.body.appendChild(readout);
+      modelFrame.addEventListener("click", event => {
+        const box = modelFrame.getBoundingClientRect();
+        const x = ((event.clientX - box.left) / box.width * 100).toFixed(1);
+        const y = ((event.clientY - box.top) / box.height * 100).toFixed(1);
+        readout.textContent = `[${x}, ${y}]`;
+        console.log(`[${x}, ${y}]`);
+      });
+    }
+  }
   document.querySelectorAll("[data-part]").forEach(button => button.addEventListener("click", () => setActivePart(button.dataset.part)));
   if (document.querySelector("#part-preview")) setActivePart(localizedParts[0].id);
   if (location.hash && !params.has("type") && !params.has("part")) requestAnimationFrame(() => {
